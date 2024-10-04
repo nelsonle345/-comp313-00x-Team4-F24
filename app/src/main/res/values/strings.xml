@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ShovelHero</string>
+    <string-array name="account_types">
+        <item>Youth Shoveller</item>
+        <item>Customer</item>
+        <item>Guardian</item>
+        <item>Adult Shoveller</item>
+        <item>Fundraiser</item>
+    </string-array>
 </resources>
