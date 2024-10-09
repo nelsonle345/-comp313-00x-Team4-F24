@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BDEDFB"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/shovel_hero_logo"
+            android:contentDescription="Shovel Hero Logo"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/lblCreateWO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request Shovelling"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:minHeight="30dp" />
+
+        <TextView
+            android:id="@+id/tvSquareFootage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:minHeight="30dp" />
+
+        <TextView
+            android:id="@+id/tvRequestDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:minHeight="30dp"
+            android:layout_marginBottom="3dp"/>
+
+        <View
+            android:id="@+id/vwAddressSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/lblSpecialRequests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Special Requests"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etCustomDate"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:hint="Specific Date" />
+
+            <TextClock
+                android:id="@+id/tpCustomTime"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:hint="Specific Time" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etCustomShoveller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Request User By Username"
+                android:minHeight="48dp"
+                android:inputType="text"
+                android:outlineAmbientShadowColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cbDriveway"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Driveway"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cbSidewalk"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Sidewalk"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cbWalkway"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Walkway"
+                android:layout_marginBottom="8dp"/>
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/etAddressNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Special Instructions (Optional)"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:minLines="3"
+            android:maxLines="6"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvWorkOrderPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Work Order Price: "
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnOrderShovelling"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Create Order"
+                android:onClick="createWorkOrder"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
