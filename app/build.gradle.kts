@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.comp313sec401.group4.shovelhero"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.comp313sec401.group4.shovelhero"
