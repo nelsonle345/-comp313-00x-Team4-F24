@@ -14,14 +14,22 @@
         android:theme="@style/Theme.ShovelHero"
         tools:targetApi="31">
         <activity
-            android:name=".User_registration"
+            android:name=".GuardianProfile"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/navmenu" />
+
+        <activity
+            android:name=".CustomerProfile"
             android:exported="false" />
         <activity
-            android:name=".Create_work_order"
+            android:name=".YouthShovellerProfile"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.ShovelHero">
             <intent-filter>
