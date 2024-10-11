@@ -1,11 +1,12 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.comp313sec401.group4.shovelhero"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.comp313sec401.group4.shovelhero"
@@ -69,4 +70,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
+    implementation("com.firebaseui:firebase-ui-database:8.0.0")
+    implementation("com.google.firebase:firebase-analytics")
 }

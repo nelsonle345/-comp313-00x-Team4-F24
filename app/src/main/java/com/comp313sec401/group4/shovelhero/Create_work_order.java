@@ -77,6 +77,7 @@ public class Create_work_order extends AppCompatActivity {
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
         //requestedDate.setText(dateTime);
 
+        // Todo: No further implementation after adding to list.
         itemCheckBoxList = new ArrayList<>();
         itemCheckBoxList.add(findViewById(R.id.cbDriveway));
         itemCheckBoxList.add(findViewById(R.id.cbSidewalk));
