@@ -19,7 +19,7 @@
 
         <meta-data
             android:name="com.google.android.actions"
-            android:resource="@xml/navmenu" />
+            android:resource="@menu/navmenu" />
 
         <activity
             android:name=".CustomerProfile"
@@ -28,8 +28,8 @@
             android:name=".YouthShovellerProfile"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false"
+            android:name=".TempMainActivity"
+            android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ShovelHero">
             <intent-filter>

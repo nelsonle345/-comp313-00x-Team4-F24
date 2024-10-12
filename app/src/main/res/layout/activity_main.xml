@@ -7,7 +7,7 @@
     android:background="#BDEDFB"
     android:orientation="vertical"
     android:textAlignment="center"
-    tools:context=".MainActivity">
+    tools:context=".TempMainActivity">
 
     <ImageView
         android:id="@+id/imgLogo"
