@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">ShovelHero</string>
+    <string name="my_properties">My Properties</string>
+    <string name="add_property">Add Property</string>
+    <string name="driveway">Driveway</string>
+    <string name="sidewalk">Sidewalk</string>
+    <string name="walkway">Walkway</string>
+    <string name="cancel">Cancel</string>
+    <string name="property_address">Property Address</string>
+    <string name="special_instructions_optional">Special Instructions (Optional)</string>
     <string-array name="account_types">
         <item>Youth Shoveller</item>
         <item>Customer</item>
