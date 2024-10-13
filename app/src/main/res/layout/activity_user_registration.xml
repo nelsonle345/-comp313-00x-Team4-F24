@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#BDEDFB"
     android:padding="16dp"
-    tools:context=".Controllers.UserRegistrationActivity">
+    tools:context=".User_registration">
 
     <!--ShovelHero Logo-->
     <ImageView
@@ -15,7 +14,7 @@
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:src="@drawable/shovel_hero_logo"
+        app:srcCompat="@drawable/logo_color"
         android:contentDescription="Shovel Hero Logo"
         android:layout_marginBottom="16dp"/>
 
@@ -26,14 +25,14 @@
         android:gravity="center"
         android:text="User Registration"
         android:textSize="24sp"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <!-- took out android:focusable="true" - was giving an error-->
         <!--    <ImageView-->
@@ -75,47 +74,47 @@
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="User Name"/>
+            android:hint="User Name" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="left">
+            android:gravity="left"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Password"
+                android:inputType="textPassword" />
 
             <EditText
                 android:id="@+id/etCoPassword"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Confirm Password"/>
+                android:hint="Confirm Password"
+                android:inputType="textPassword" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="left">
+            android:gravity="left"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/etFirstname"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:hint="First Name"/>
+                android:hint="First Name" />
 
             <EditText
                 android:id="@+id/etLastname"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:hint="Last Name"/>
+                android:hint="Last Name" />
 
         </LinearLayout>
 
@@ -124,14 +123,13 @@
             android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"/>
+            android:hint="Phone Number" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"/>
-
+            android:hint="Email" />
 
 
         <LinearLayout
@@ -143,19 +141,19 @@
                 android:id="@+id/btnBirthdate"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:hint="Birthdate"/>
+                android:hint="Birthdate" />
 
             <ImageButton
                 android:id="@+id/imgUploadIdCard"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:contentDescription="Upload ID card"
                 android:focusable="true"
                 android:onClick="onUploadIdCard"
-                android:src="@drawable/add_image"
                 android:scaleType="fitXY"
-                android:background="?android:selectableItemBackground" />
+                android:src="@drawable/add_image" />
 
             <TextView
                 android:id="@+id/tvUploadIdCard"
@@ -170,9 +168,9 @@
             android:id="@+id/btnCreateAccount"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Create My Account"
+            android:layout_marginBottom="14dp"
             android:onClick="createUser"
-            android:layout_marginBottom="14dp" />
+            android:text="Create My Account" />
 
     </LinearLayout>
 </LinearLayout>
