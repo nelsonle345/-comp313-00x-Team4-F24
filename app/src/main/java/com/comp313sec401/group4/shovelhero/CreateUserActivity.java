@@ -22,6 +22,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.comp313sec401.group4.shovelhero.Models.User;
+
 
 public class CreateUserActivity extends AppCompatActivity {
 

@@ -1,5 +1,6 @@
 package com.comp313sec401.group4.shovelhero
 
+import com.comp313sec401.group4.shovelhero.Models.User
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
