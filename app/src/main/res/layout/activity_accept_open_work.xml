@@ -30,6 +30,24 @@
             android:layout_marginBottom="16dp"/>
 
         <TextView
+            android:id="@+id/dateOfRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date Of Request: 01/01/2024"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/nameOfRequester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name of Requester: John Doe"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
             android:id="@+id/workOrderId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
