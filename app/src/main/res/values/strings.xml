@@ -30,4 +30,12 @@
     <string name="enter_phone_number">Enter phone number</string>
     <string name="account_type">Account Type:</string>
     <string name="button_to_add_user">Button to add user</string>
+
+    <string-array name="payment_types">
+        <item>Bank Account</item>
+        <item>Paypal</item>
+        <item>Visa</item>
+        <item>Mastercard</item>
+        <item>American Express</item>
+    </string-array>
 </resources>

@@ -45,7 +45,7 @@
                 android:contentDescription="Profile Picture"
                 android:focusable="true"
                 android:onClick="onUploadProfilePicture"
-                android:src="@drawable/shovel_hero_logo"
+                android:src="@drawable/logo_color"
                 android:scaleType="fitXY"
                 android:background="@color/white"/>
         </LinearLayout>
