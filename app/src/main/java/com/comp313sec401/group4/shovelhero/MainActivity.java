@@ -16,6 +16,4 @@ public class MainActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.etUsername);
         passwordEditText = findViewById(R.id.etPassword);
     }
-
-
 }
