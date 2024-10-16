@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 
 public class User_registration extends AppCompatActivity {
@@ -87,5 +89,9 @@ public class User_registration extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void registerUser(String username, String password, String email) {
+        ParseUser user = new ParseUser();
     }
 }

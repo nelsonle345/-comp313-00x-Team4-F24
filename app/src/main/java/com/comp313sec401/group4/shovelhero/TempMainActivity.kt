@@ -20,28 +20,28 @@ class TempMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // recyclerView = findViewById(R.id.userView)
-        recyclerView.layoutManager = CustomLinearLayoutManager(this)
-
-        val options = FirebaseRecyclerOptions.Builder<User>()
-            .setQuery(FirebaseDatabase.getInstance().getReference("users"), User::class.java)
-            .build()
-
-        mainAdapter = MainAdapter(options)
-        recyclerView.adapter = mainAdapter
-
-        // floatingActionButton = findViewById(R.id.floatingAddUserButton)
-        floatingActionButton.setOnClickListener {
-            startActivity(Intent(applicationContext, CreateUserActivity::class.java))
-        }
+//        recyclerView.layoutManager = CustomLinearLayoutManager(this)
+//
+//        val options = FirebaseRecyclerOptions.Builder<User>()
+//            .setQuery(FirebaseDatabase.getInstance().getReference("users"), User::class.java)
+//            .build()
+//
+//        mainAdapter = MainAdapter(options)
+//        recyclerView.adapter = mainAdapter
+//
+//        // floatingActionButton = findViewById(R.id.floatingAddUserButton)
+//        floatingActionButton.setOnClickListener {
+//            startActivity(Intent(applicationContext, CreateUserActivity::class.java))
+//        }
     }
 
     override fun onStart() {
         super.onStart()
-        mainAdapter.startListening()
+        //mainAdapter.startListening()
     }
 
     override fun onStop() {
         super.onStop()
-        mainAdapter.stopListening()
+        //mainAdapter.stopListening()
     }
 }
