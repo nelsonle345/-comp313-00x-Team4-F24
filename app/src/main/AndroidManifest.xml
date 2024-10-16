@@ -26,7 +26,8 @@
             android:exported="false" />
         <activity
             android:name=".YouthShovellerProfile"
-            android:exported="false" />
+            android:theme="@style/Theme.AppCompat.Light"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
