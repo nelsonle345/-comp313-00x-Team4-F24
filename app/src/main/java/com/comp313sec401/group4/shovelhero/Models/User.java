@@ -2,10 +2,15 @@ package com.comp313sec401.group4.shovelhero.Models;
 
 import com.google.firebase.database.PropertyName;
 
+import java.util.HashMap;
+
 public class User {
+    private String userId;
     private String fname, lname, email, username, password, phonenumber;
     private String addedDate;
+    private String birthdate;
     private String accountType;
+    private HashMap<String, User> linkedUsers;
 
     public User() {
         fname = "";
@@ -15,20 +20,33 @@ public class User {
         password = "";
         phonenumber = "";
         addedDate = "";
+        birthdate = "";
         accountType = "";
+        linkedUsers = new HashMap<>();
     }
 
-    public User(String fname, String lname, String email, String username, String password, String phonenumber, String addedDate, String accountType) {
+    public User(String userId, String accountType, String username, String password, String fname, String lname, String birthdate, String email, String phonenumber) {
+        this.userId = userId;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.username = username;
         this.password = password;
         this.phonenumber = phonenumber;
-        this.addedDate = addedDate;
+        //this.addedDate = addedDate;
+        this.birthdate = birthdate;
         this.accountType = accountType;
     }
 
+    @PropertyName("userId")
+    public String getUserId() {
+        return userId;
+    }
+
+    @PropertyName("userId")
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     @PropertyName("firstname")
     public String getFname() { return fname; }
     @PropertyName("firstname")
@@ -61,8 +79,27 @@ public class User {
     @PropertyName("date-added")
     public void setAddedDate(String addedDate) { this.addedDate = addedDate; }
 
+    @PropertyName("birthdate")
+    public String getBirthdate() { return addedDate; }
+    @PropertyName("birthdate")
+    public void setBirthdate(String birthDate) { this.birthdate = birthDate; }
+
     @PropertyName("accounttype")
     public String getAccountType() { return accountType; }
     @PropertyName("accounttype")
     public void setAccountType(String accountType) { this.accountType = accountType; }
+
+    public void addLinkedUser(String id, User user) {
+        linkedUsers.put(id, user);
+    }
+
+    @PropertyName("linkedusers")
+    public HashMap<String, User> getLinkedUsers() {
+        return linkedUsers;
+    }
+
+    @PropertyName("linkedusers")
+    public void setLinkedUsers(HashMap<String, User> linkedUsers) {
+        this.linkedUsers = linkedUsers;
+    }
 }

@@ -15,6 +15,12 @@
         android:theme="@style/Theme.ShovelHero"
         tools:targetApi="31">
         <activity
+            android:name=".EditProfileInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EditPassword"
+            android:exported="false" />
+        <activity
             android:name=".Manage_Payment"
             android:exported="false" />
         <activity
