@@ -19,7 +19,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+
 public class Create_work_order extends AppCompatActivity {
+
+    private static final String TAG = "Create_work_order";
+
+
+
     private String workOrderId;
     private TextView addressTextView;
     private TextView sqFootageTextView;
@@ -105,6 +111,7 @@ public class Create_work_order extends AppCompatActivity {
         });
         System.out.println("Work order id intent ok from profile: " + currentWOId);
     }
+
     // Validation function for Date
     private boolean isValidDate(String date) {
         try {
@@ -133,4 +140,7 @@ public class Create_work_order extends AppCompatActivity {
     private boolean isValidUserName(String userName) {
         return userName.length() >= 5 && userName.length() <= 20;
     }
+
+
+
 }

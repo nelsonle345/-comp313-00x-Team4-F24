@@ -16,6 +16,17 @@ public class User {
   private String birthDate;
   private String email;
   private String phoneNumber;
+    private Image profilePic;
+    private Image idProof;
+
+    private String  guardianIdUrl; //on Guardian view only
+    private boolean guardianIdValidated; // --> only available to app team // I don't think Firebase works with complex Android UI (boolean)?
+    private int shovellerRadius; // --> how far is shoveller willing to walk
+
+
+
+    // getters and setters
+
 
     public String getAddress() {
         return address;
@@ -163,16 +174,6 @@ public class User {
         this.shovellerRadius = shovellerRadius;
     }
 
-    private Image profilePic;
-  private Image idProof;
-
-    private String  guardianIdUrl; //on Guardian view only
-    private boolean guardianIdValidated; // --> only available to app team // I don't think Firebase works with complex Android UI (boolean)?
-    private int shovellerRadius; // --> how far is shoveller willing to walk
-
-
-
-    // getters and setters
 
 
 
