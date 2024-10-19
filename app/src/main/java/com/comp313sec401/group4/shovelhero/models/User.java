@@ -16,10 +16,20 @@ public class User {
   private String birthDate;
   private String email;
   private String phoneNumber;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private String address;
   private int age;
 
     //construcutor
-    public User(String userId, String userName, String password, String userType, String firstName, String lastName, String birthDate, String email, String phoneNumber, int age) {
+    public User(String address,String userId, String userName, String password, String userType, String firstName, String lastName, String birthDate, String email, String phoneNumber, int age) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -30,6 +40,7 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.age = age;
+        this.address=address;
     }
 
     public String getUserId() {
