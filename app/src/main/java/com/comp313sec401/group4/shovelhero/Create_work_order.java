@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,10 +20,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import com.comp313sec401.group4.shovelhero.models.WorkOrder;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Create_work_order extends AppCompatActivity {
 
-    private static final String TAG = "Create_work_order";
+ private static final String TAG = "Create_work_order";
 
 
 
@@ -91,6 +95,8 @@ public class Create_work_order extends AppCompatActivity {
         btnOrderShovelling = findViewById(R.id.btnOrderShovelling);
         btnCancelOrder = findViewById(R.id.btnCancel);
 
+
+
         btnOrderShovelling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +146,6 @@ public class Create_work_order extends AppCompatActivity {
     private boolean isValidUserName(String userName) {
         return userName.length() >= 5 && userName.length() <= 20;
     }
-
 
 
 }
