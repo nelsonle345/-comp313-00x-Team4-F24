@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GuardianProfile"
-    android:background="#BDEDFB">
+    tools:context=".GuardianProfile">
 
     <ImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
-        android:src="@drawable/shovel_hero_logo"
+        android:src="@drawable/logo_color"
         android:contentDescription="Shovel Hero Logo"
         android:layout_marginBottom="1dp"/>
 
@@ -48,7 +47,7 @@
                 android:contentDescription="Guardian Profile Picture"
                 android:focusable="true"
                 android:onClick="onUploadProfilePicture"
-                android:src="@drawable/shovel_hero_logo"
+                android:src="@drawable/logo_color"
                 android:scaleType="fitXY"
                 android:background="@color/white"/>
 

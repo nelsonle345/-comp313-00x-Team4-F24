@@ -14,6 +14,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseError;
 
+import com.comp313sec401.group4.shovelhero.Models.User;
+
 public class MainAdapter extends FirebaseRecyclerAdapter<User, MainAdapter.myViewHolder> {
 
     /**

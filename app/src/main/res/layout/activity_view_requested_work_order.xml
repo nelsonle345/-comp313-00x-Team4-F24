@@ -15,7 +15,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/shovel_hero_logo"
+            android:src="@drawable/logo_color"
             android:contentDescription="Shovel Hero Logo"
             android:layout_marginBottom="16dp"/>
 
@@ -92,10 +92,10 @@
                 android:id="@+id/editButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Edit"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="#FF9800"/>
+                android:layout_weight="1"
+                android:backgroundTint="#2196F3"
+                android:text="Edit" />
 
             <Button
                 android:id="@+id/closeButton"

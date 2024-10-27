@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0F7FA"
     android:padding="16dp">
 
     <LinearLayout
@@ -17,7 +16,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:contentDescription="Shovel Hero Logo"
-            android:src="@drawable/shovel_hero_logo" />
+            android:src="@drawable/logo_color" />
 
         <TextView
             android:id="@+id/lblOpenWorkOrders"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
 
 public class User_registration extends AppCompatActivity {
     private String userId;
@@ -55,10 +57,6 @@ public class User_registration extends AppCompatActivity {
         uploadIdImage = findViewById(R.id.imgUploadIdCard);
         createAccountButton = findViewById(R.id.btnCreateAccount);
 
-        // Set visibility of ID card button and add ID text to hidden
-        uploadIdImage.setVisibility(View.GONE);
-        uploadIdCardTextView.setVisibility(View.GONE);
-
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,23 +68,23 @@ public class User_registration extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String phone = phoneEditText.getText().toString();
 
-                if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty()){
+                if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty()) {
                     Toast.makeText(User_registration.this, "Please fill out all the fields", Toast.LENGTH_SHORT).show();
                 }
-                if(username.length() <= 3 || username.length() >= 10){
+                if (username.length() <= 3 || username.length() >= 10) {
                     Toast.makeText(User_registration.this, "Please enter valid username", Toast.LENGTH_SHORT).show();
                 }
-                if(!(password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*[a-zA-Z].*"))){
+                if (!(password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*[a-zA-Z].*"))) {
                     Toast.makeText(User_registration.this, "Password must contain at least 8 characters and one letter and one digit", Toast.LENGTH_SHORT).show();
                 }
                 if (!password.equals(confirmPassword)) {
                     Toast.makeText(User_registration.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())){
+                if (!(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())) {
                     Toast.makeText(User_registration.this, "Please enter valid email", Toast.LENGTH_SHORT).show();
                 }
-                if(!(android.util.Patterns.PHONE.matcher(phone).matches())){
+                if (!(android.util.Patterns.PHONE.matcher(phone).matches())) {
                     Toast.makeText(User_registration.this, "Please enter valid phone number", Toast.LENGTH_SHORT).show();
                 }
             }
