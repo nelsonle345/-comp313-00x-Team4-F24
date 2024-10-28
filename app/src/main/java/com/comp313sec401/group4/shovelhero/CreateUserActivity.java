@@ -59,6 +59,8 @@ public class CreateUserActivity extends AppCompatActivity {
                 String lname = ((EditText) findViewById(R.id.txtCreateLastname)).getText().toString();
                 String email = ((EditText) findViewById(R.id.txtCreateEmail)).getText().toString();
                 String phone = ((EditText) findViewById(R.id.txtCreatePhone)).getText().toString();
+                String address = "";
+                String birthDate = "";
                 String accountType = ((Spinner) findViewById(R.id.txtCreateAccountType)).getSelectedItem().toString();
                 // Suppressed because my API is too old :(
                 @SuppressLint({"NewApi", "LocalSuppress"}) LocalDate currDate = LocalDate.now();
@@ -70,8 +72,7 @@ public class CreateUserActivity extends AppCompatActivity {
 
 
                 // Log.d(String.valueOf(Log.DEBUG), "This is user: " + currDate.toString());
-
-                User newUser = new User(fname, lname, email, username, password, phone, currDate.toString(), accountType);
+                User newUser = new User(address, 5, username, password, accountType, fname, lname, birthDate, email, phone, 32);
                 insertData(newUser);
                 // Log.d(String.valueOf(Log.DEBUG), "This is user: " + newUser.getUsername() + ", date: " + newUser.getAddedDate());
             }
@@ -81,13 +82,12 @@ public class CreateUserActivity extends AppCompatActivity {
     private void insertData(User user) {
         Map<String, Object> map = new HashMap<>();
 
-        map.put("firstname", user.getFname());
-        map.put("lastname", user.getLname());
+        map.put("firstname", user.getFirstName());
+        map.put("lastname", user.getLastName());
         map.put("email", user.getEmail());
-        map.put("username", user.getUsername());
+        map.put("username", user.getUserName());
         map.put("password", user.getPassword());
-        map.put("phonenumber", user.getPhonenumber());
-        map.put("date-added", user.getAddedDate());
+        map.put("phonenumber", user.getPhoneNumber());
         map.put("accounttype", user.getAccountType());
 
         FirebaseDatabase.getInstance().getReference().child("users").push()

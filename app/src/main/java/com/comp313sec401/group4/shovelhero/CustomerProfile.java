@@ -83,13 +83,13 @@ public class CustomerProfile extends AppCompatActivity {
 
                     if (user != null) {
                         //display user profile data
-                        usernameTV.setText("Username: " + user.getUsername());
-                        firstNameTV.setText("Name: " + user.getFname());
-                        lastNameTV.setText(user.getLname());
+                        usernameTV.setText("Username: " + user.getUserName());
+                        firstNameTV.setText("Name: " + user.getFirstName());
+                        lastNameTV.setText(user.getLastName());
                         emailTV.setText("Email: " + user.getEmail());
-                        phoneTV.setText("Phone Number: " + user.getPhonenumber());
+                        phoneTV.setText("Phone Number: " + user.getPhoneNumber());
 
-                        System.out.println("User data loaded: " + user.getUsername());
+                        System.out.println("User data loaded: " + user.getUserName());
                         System.out.println("Sending userid to read addresses: " + user);
 
 
@@ -104,7 +104,7 @@ public class CustomerProfile extends AppCompatActivity {
                             public void onClick(View view) {
                                 Toast.makeText(CustomerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
                                 Intent intentManageCustomerProfile = new Intent(CustomerProfile.this, EditProfileInfo.class);
-                                String youthId = user.getUserId();
+                                int youthId = user.getUserId();
                                 intentManageCustomerProfile.putExtra("USER_ID", youthId);
                                 startActivity(intentManageCustomerProfile);
                             }
@@ -116,7 +116,7 @@ public class CustomerProfile extends AppCompatActivity {
 
                             public void onClick(View view) {
                                  Intent intentManagePayment = new Intent(CustomerProfile.this, Manage_Payment.class);
-                                 String customerId = user.getUserId();
+                                 int customerId = user.getUserId();
                                  intentManagePayment.putExtra("USER_ID", customerId);
                                  startActivity(intentManagePayment);
 
@@ -129,7 +129,7 @@ public class CustomerProfile extends AppCompatActivity {
 
                             public void onClick(View view) {
                                 Intent intentEditPassword = new Intent(CustomerProfile.this, EditPassword.class);
-                                String customerId = user.getUserId();
+                                int customerId = user.getUserId();
                                 intentEditPassword.putExtra("USER_ID", customerId);
                                 startActivity(intentEditPassword);
                             }

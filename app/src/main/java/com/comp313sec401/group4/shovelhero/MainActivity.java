@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.comp313sec401.group4.shovelhero.ui.theme.AdultShovellerProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,22 +23,22 @@ import com.comp313sec401.group4.shovelhero.Models.User;
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference shovelHeroDatabaseReference;
-    private EditText usernameEditText, passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        usernameEditText = findViewById(R.id.etUsername);
-        passwordEditText = findViewById(R.id.etPassword);
-
+        Log.d("Debugging", "Connecting to firebase");
         shovelHeroDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
-        System.out.println("Firebase connected");
+        Log.d("Debugging", "Firebase connected");
+
+        Button btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(this::loginUser);
     }
     public void loginUser(View view) {
-        final String username = usernameEditText.getText().toString().trim();
-        final String password = passwordEditText.getText().toString().trim();
+        String username = ((EditText) findViewById(R.id.etUsername)).getText().toString();
+        String password = ((EditText) findViewById(R.id.etPassword)).getText().toString();
 
         //Check if username exists
         shovelHeroDatabaseReference.orderByChild("username").equalTo(username)
@@ -43,50 +46,40 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()){
-                            for (DataSnapshot userSnapShot : snapshot.getChildren()) {
-                                User user = userSnapShot.getValue(User.class);
-
-                                if (user != null && user.getPassword().equals(password)){
-                                    System.out.println("Username and password ok");
-
-                                    String accountType = user.getAccountType();
-
-                                    System.out.println("Account Type confirmed: " + accountType);
-
-                                    //valid username and password
-                                    Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                                    System.out.println("login success");
-
-                                    switch (accountType) {
-                                        case "Youth Shoveller":
-                                            Intent intentLoginYouth = new Intent(MainActivity.this, YouthShovellerProfile.class);
-                                            String youthID = user.getUserId();
-                                            intentLoginYouth.putExtra("USER_ID", youthID);
-                                            startActivity(intentLoginYouth);
-                                            finish();
-                                            break;
-                                        case "Customer":
-                                            Intent intentLoginCustomer = new Intent(MainActivity.this, CustomerProfile.class);
-                                            String customerId = user.getUserId();
-                                            intentLoginCustomer.putExtra("USER_ID", customerId);
-                                            startActivity(intentLoginCustomer);
-                                            finish();
-                                            break;
-                                        case "Guardian":
-                                            Intent intentLoginGuardian = new Intent(MainActivity.this, GuardianProfile.class);
-                                            String guardianId = user.getUserId();
-                                            intentLoginGuardian.putExtra("USER_ID", guardianId);
-                                            startActivity(intentLoginGuardian);
-                                            finish();
-                                            break;
-                                        default:
-                                            Intent intent = new Intent(MainActivity.this, User_registration.class);
-                                            startActivity(intent);
-                                            break;
+                            for(DataSnapshot userSnapshot : snapshot.getChildren()) {
+                                User user = userSnapshot.getValue(User.class);
+                                if (user != null) {
+                                    if (password.equals(user.getPassword())) {
+                                        Log.d("Debugging", "User Account: " + user.getAccountType());
+                                        switch (user.getAccountType()) {
+                                            case "Guardian": {
+                                                Intent intent = new Intent(MainActivity.this, GuardianProfile.class);
+                                                intent.putExtra("user_id", user.getUserId());
+                                                startActivity(intent);
+                                                finish();
+                                                break;
+                                            }
+                                            case "Youth Shoveler": {
+                                                Intent intent = new Intent(MainActivity.this, YouthShovellerProfile.class);
+                                                intent.putExtra("user_id", user.getUserId());
+                                                startActivity(intent);
+                                                finish();
+                                                break;
+                                            }
+                                            case "Adult Shoveler": {
+                                                Intent intent = new Intent(MainActivity.this, AdultShovellerProfile.class);
+                                                intent.putExtra("user_id", user.getUserId());
+                                                startActivity(intent);
+                                                finish();
+                                                break;
+                                            }
+                                        }
+                                        Log.d("Debugging", "This is the logged-in user: " + user.getEmail());
+                                    } else {
+                                        Log.d("Debugging", "Password mismatch.");
                                     }
-                                }
-                                else {
-                                    Toast.makeText(MainActivity.this, "invalid password or account type", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Log.d("Debugging", "User Object is null");
                                 }
                             }
                         } else {

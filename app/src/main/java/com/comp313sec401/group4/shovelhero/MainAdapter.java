@@ -33,7 +33,7 @@ public class MainAdapter extends FirebaseRecyclerAdapter<User, MainAdapter.myVie
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull User model) {
 
         // System.out.println("Model: " + model.getFname());
-        holder.name.setText(model.getFname());
+        holder.name.setText(model.getFirstName());
         holder.accountType.setText(model.getAccountType());
     }
 

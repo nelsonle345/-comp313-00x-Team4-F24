@@ -85,19 +85,19 @@ public class EditPassword extends AppCompatActivity {
                     switch (accountType) {
                         case "Youth Shoveller":
                             Intent intentYouth = new Intent(EditPassword.this, YouthShovellerProfile.class);
-                            String youthID = currentUser.getUserId();
+                            int youthID = currentUser.getUserId();
                             intentYouth.putExtra("USER_ID", youthID);
                             startActivity(intentYouth);
                             break;
                         case "Customer":
                             Intent intentCustomer = new Intent(EditPassword.this, CustomerProfile.class);
-                            String customerId = currentUser.getUserId();
+                            int customerId = currentUser.getUserId();
                             intentCustomer.putExtra("USER_ID", customerId);
                             startActivity(intentCustomer);
                             break;
                         case "Guardian":
                             Intent intentGuardian = new Intent(EditPassword.this, GuardianProfile.class);
-                            String guardianId = currentUser.getUserId();
+                            int guardianId = currentUser.getUserId();
                             intentGuardian.putExtra("USER_ID", guardianId);
                             startActivity(intentGuardian);
                             break;

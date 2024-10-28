@@ -94,12 +94,12 @@ public class EditProfileInfo extends AppCompatActivity {
                 if(snapshot.exists()){
                     User user = snapshot.getValue(User.class);
                     if(user != null) {
-                        editFirstname.setText(user.getFname());
-                        editLastname.setText(user.getLname());
-                        editUsername.setText(user.getUsername());
-                        editBirthdate.setText(user.getBirthdate());
+                        editFirstname.setText(user.getFirstName());
+                        editLastname.setText(user.getLastName());
+                        editUsername.setText(user.getUserName());
+                        editBirthdate.setText(user.getBirthDate());
                         editEmail.setText(user.getEmail());
-                        editPhoneNumber.setText(user.getPhonenumber());
+                        editPhoneNumber.setText(user.getPhoneNumber());
 
                     } else {
                         Toast.makeText(EditProfileInfo.this, "User data cannot be found", Toast.LENGTH_SHORT).show();

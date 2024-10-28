@@ -66,93 +66,93 @@ public class YouthShovellerProfile extends AppCompatActivity {
         if (intent != null) {
             userId = intent.getStringExtra("USER_ID");
             if (userId != null) {
-                retrieveYouthProfile(userId);
+                //retrieveYouthProfile(userId);
             }
         }
     }
-    private void retrieveYouthProfile(String userId){
-        userTable.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    User user = snapshot.getValue(User.class);
-
-                    if (user != null) {
-                        //display user profile info
-                        usernameTV.setText("Username: " + user.getUsername());
-                        firstNameTV.setText("First Name: " + user.getFname());
-                        lastNameTV.setText(user.getLname());
-                        emailTV.setText("Email: " + user.getEmail());
-                        phoneTV.setText("Phone Number: " + user.getPhonenumber());
-
-
-                        //*******
-                        //YOUTH SHOVELLER BUTTONS
-                        //*******
-
-                        //VIEW JOBS BUTTON
-                            /*
-                            btnViewJobs.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intentViewYouthJobs = new Intent(YouthShovelerProfileActivity.this, ListAllOpenWorkOrdersActivity.class);
-                                    String youthId = user.getUserId();
-                                    intentViewYouthJobs.putExtra("USER_ID", youthId);
-                                    startActivity(intentViewYouthJobs);
-                                }
-                            });
-                            */
-
-
-                        //MANAGE PAYMENT BUTTON
-                        btnManagePaymentInfo.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
-
-                                Intent intentManageYouthPayment = new Intent(YouthShovellerProfile.this, Manage_Payment.class);
-                                String youthId = user.getUserId();
-                                intentManageYouthPayment.putExtra("USER_ID", youthId);
-                                startActivity(intentManageYouthPayment);
-                            }
-                        });
-
-                        //MANAGE YOUTH PROFILE BUTTON
-                        btnManageProfileInfo.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
-                                Intent intentManageYouthProfile = new Intent(YouthShovellerProfile.this, EditProfileInfo.class);
-                                String youthId = user.getUserId();
-                                intentManageYouthProfile.putExtra("USER_ID", youthId);
-                                startActivity(intentManageYouthProfile);
-                            }
-                        });
-
-
-                        //EDIT PASSWORD BUTTON
-                        btnEditPassword.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intentEditPassword = new Intent(YouthShovellerProfile.this, EditPassword.class);
-                                String youthId = user.getUserId();
-                                intentEditPassword.putExtra("USER_ID", youthId);
-                                startActivity(intentEditPassword);
-                            }
-                        });
-
-                    } else {
-                        //handle no user data error
-                    }
-                } else {
-                    //handle user id does not exist
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                //handle error
-            }
-        });
-    }
+//    private void retrieveYouthProfile(String userId){
+//        userTable.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//                    User user = snapshot.getValue(User.class);
+//
+//                    if (user != null) {
+//                        //display user profile info
+//                        usernameTV.setText("Username: " + user.getUsername());
+//                        firstNameTV.setText("First Name: " + user.getFname());
+//                        lastNameTV.setText(user.getLname());
+//                        emailTV.setText("Email: " + user.getEmail());
+//                        phoneTV.setText("Phone Number: " + user.getPhonenumber());
+//
+//
+//                        //*******
+//                        //YOUTH SHOVELLER BUTTONS
+//                        //*******
+//
+//                        //VIEW JOBS BUTTON
+//                            /*
+//                            btnViewJobs.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    Intent intentViewYouthJobs = new Intent(YouthShovelerProfileActivity.this, ListAllOpenWorkOrdersActivity.class);
+//                                    String youthId = user.getUserId();
+//                                    intentViewYouthJobs.putExtra("USER_ID", youthId);
+//                                    startActivity(intentViewYouthJobs);
+//                                }
+//                            });
+//                            */
+//
+//
+//                        //MANAGE PAYMENT BUTTON
+//                        btnManagePaymentInfo.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
+//
+//                                Intent intentManageYouthPayment = new Intent(YouthShovellerProfile.this, Manage_Payment.class);
+//                                String youthId = user.getUserId();
+//                                intentManageYouthPayment.putExtra("USER_ID", youthId);
+//                                startActivity(intentManageYouthPayment);
+//                            }
+//                        });
+//
+//                        //MANAGE YOUTH PROFILE BUTTON
+//                        btnManageProfileInfo.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
+//                                Intent intentManageYouthProfile = new Intent(YouthShovellerProfile.this, EditProfileInfo.class);
+//                                String youthId = user.getUserId();
+//                                intentManageYouthProfile.putExtra("USER_ID", youthId);
+//                                startActivity(intentManageYouthProfile);
+//                            }
+//                        });
+//
+//
+//                        //EDIT PASSWORD BUTTON
+//                        btnEditPassword.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                Intent intentEditPassword = new Intent(YouthShovellerProfile.this, EditPassword.class);
+//                                String youthId = user.getUserId();
+//                                intentEditPassword.putExtra("USER_ID", youthId);
+//                                startActivity(intentEditPassword);
+//                            }
+//                        });
+//
+//                    } else {
+//                        //handle no user data error
+//                    }
+//                } else {
+//                    //handle user id does not exist
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                //handle error
+//            }
+//        });
+    //}
 }
