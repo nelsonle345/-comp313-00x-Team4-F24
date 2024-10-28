@@ -1,4 +1,4 @@
-package com.comp313sec401.group4.shovelhero.ui.theme;
+package com.comp313sec401.group4.shovelhero;
 
 import androidx.appcompat.app.AppCompatActivity;
 

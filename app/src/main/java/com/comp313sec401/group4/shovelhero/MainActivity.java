@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.comp313sec401.group4.shovelhero.ui.theme.AdultShovellerProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,27 +49,24 @@ public class MainActivity extends AppCompatActivity {
                                 User user = userSnapshot.getValue(User.class);
                                 if (user != null) {
                                     if (password.equals(user.getPassword())) {
-                                        Log.d("Debugging", "User Account: " + user.getAccountType());
+                                        Log.d("Debugging", "User Account + id: " + user.getAccountType() + ", " + user.getUserId());
                                         switch (user.getAccountType()) {
                                             case "Guardian": {
                                                 Intent intent = new Intent(MainActivity.this, GuardianProfile.class);
                                                 intent.putExtra("user_id", user.getUserId());
                                                 startActivity(intent);
-                                                finish();
                                                 break;
                                             }
                                             case "Youth Shoveler": {
                                                 Intent intent = new Intent(MainActivity.this, YouthShovellerProfile.class);
                                                 intent.putExtra("user_id", user.getUserId());
                                                 startActivity(intent);
-                                                finish();
                                                 break;
                                             }
                                             case "Adult Shoveler": {
                                                 Intent intent = new Intent(MainActivity.this, AdultShovellerProfile.class);
                                                 intent.putExtra("user_id", user.getUserId());
                                                 startActivity(intent);
-                                                finish();
                                                 break;
                                             }
                                         }
@@ -84,12 +80,11 @@ public class MainActivity extends AppCompatActivity {
                             }
                         } else {
                             Toast.makeText(MainActivity.this, "User not found. Please try again or create a new account.", Toast.LENGTH_SHORT).show();
-                            ;                            }
+                        }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        //handle error
+                        Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

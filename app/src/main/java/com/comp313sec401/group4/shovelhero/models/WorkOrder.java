@@ -1,4 +1,4 @@
-package com.comp313sec401.group4.shovelhero.models;
+package com.comp313sec401.group4.shovelhero.Models;
 
 import android.widget.CalendarView;
 import android.widget.TextClock;
@@ -29,6 +29,8 @@ public class WorkOrder {
     // foreign key from customer class
     private String customerId;
     private String customerAddressId;
+
+    public WorkOrder() {}
 
     // constructor
     public WorkOrder(String workOrderId, Date requestDate, String status, int squareFootage, List<String> itemsRequested, String customerId, String customerAddressId) {
