@@ -1,12 +1,18 @@
 package com.comp313sec401.group4.shovelhero;
 
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.TextView;
         import android.widget.Toast;
         import androidx.appcompat.app.AppCompatActivity;
+
+        import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
+
+        import org.w3c.dom.Text;
+
 public class ViewRequestedWorkOrderActivity extends AppCompatActivity {
 
     private Button acceptButton, declineButton;
@@ -17,6 +23,19 @@ public class ViewRequestedWorkOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_requested_work_order);
+
+        WorkOrder order = (WorkOrder) getIntent().getParcelableExtra("order");
+        if(order != null) {
+            Log.d("Debugging", "Order: " + order.getWorkOrderId());
+
+            TextView requestWorkId = findViewById(R.id.requestedWorkOrderId);
+            TextView requestInstructions = findViewById(R.id.requestedWorkOrderDescription);
+            TextView requestLocation = findViewById(R.id.requestedWorkOrderLocation);
+            TextView requestUrgency = findViewById(R.id.requestedWorkOrderPriority);
+            TextView requestStatus = findViewById(R.id.requestedWorkOrderStatus);
+
+        }
+
 
 //        acceptButton = findViewById(R.id.acceptButton);
 //        declineButton = findViewById(R.id.declineButton);

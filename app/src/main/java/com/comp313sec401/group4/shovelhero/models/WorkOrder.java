@@ -1,18 +1,21 @@
 package com.comp313sec401.group4.shovelhero.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.CalendarView;
 import android.widget.TextClock;
 import java.util.Date;
 import java.util.List;
 import android.media.Image;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.PropertyName;
 
-public class WorkOrder {
-
+public class WorkOrder implements Parcelable {
 
     // attributes
-    private int workOrderId;
+    private int workorderid;
     private String status;
     private int squareFootage;
     private String area; // will be a areas divided by ';'. I.e. driveway;sidewalk
@@ -39,9 +42,9 @@ public class WorkOrder {
     public WorkOrder() {}
 
     // constructor
-    public WorkOrder(int workOrderId, String area, String instructions, double price, String requestDate, String requestUser,
+    public WorkOrder(int workorderid, String area, String instructions, double price, String requestDate, String requestUser,
                      String specificdate, int squareFootage, String status, String urgency,  int userId, String userAddress) {
-        this.workOrderId = workOrderId;
+        this.workorderid = workorderid;
         this.area = area;
         this.instructions = instructions;
         this.price = price;
@@ -55,10 +58,25 @@ public class WorkOrder {
         this.userAddress = userAddress;
     }
 
-    @PropertyName("workorderid")
-    public int getWorkOrderId() { return workOrderId; }
-    @PropertyName("workorderid")
-    public void setWorkOrderId(int workOrderId) { this.workOrderId = workOrderId; }
+    protected WorkOrder(Parcel in) {
+        this.workorderid = in.readInt();
+        this.area = in.readString();
+        this.instructions = in.readString();
+        this.price = in.readDouble();
+        this.requestDate = in.readString();
+        this.requestUser = in.readString();
+        this.specificdate = in.readString();
+        this.squareFootage = in.readInt();
+        this.status = in.readString();
+        this.urgency = in.readString();
+        this.userId = in.readInt();
+        this.userAddress = in.readString();
+    }
+
+    @PropertyName("workorderId")
+    public int getWorkOrderId() { return workorderid; }
+    @PropertyName("workorderId")
+    public void setWorkOrderId(int workorderid) { this.workorderid = workorderid; }
 
     @PropertyName("status")
     public String getStatus() { return status; }
@@ -113,4 +131,36 @@ public class WorkOrder {
     @PropertyName("address")
     public void setUserAddress(String userAddress) { this.userAddress = userAddress; }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(workorderid);
+        parcel.writeString(area);
+        parcel.writeString(instructions);
+        parcel.writeDouble(price);
+        parcel.writeString(requestDate);
+        parcel.writeString(requestUser);
+        parcel.writeString(specificdate);
+        parcel.writeInt(squareFootage);
+        parcel.writeString(status);
+        parcel.writeString(urgency);
+        parcel.writeInt(userId);
+        parcel.writeString(userAddress);
+    }
+
+    public static final Creator<WorkOrder> CREATOR = new Creator<WorkOrder>() {
+        @Override
+        public WorkOrder createFromParcel(Parcel in) {
+            return new WorkOrder(in);
+        }
+
+        @Override
+        public WorkOrder[] newArray(int size) {
+            return new WorkOrder[size];
+        }
+    };
 }

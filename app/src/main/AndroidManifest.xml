@@ -24,6 +24,12 @@
             android:name=".Manage_Payment"
             android:exported="false" />
         <activity
+            android:name=".ViewRequestedWorkOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AcceptOpenWorkActivity"
+            android:exported="false" />
+        <activity
             android:name=".GuardianProfile"
             android:exported="false" />
         <activity
