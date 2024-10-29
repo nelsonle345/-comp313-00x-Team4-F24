@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,22 +15,36 @@
         android:theme="@style/Theme.ShovelHero"
         tools:targetApi="31">
         <activity
+            android:name=".EditProfileInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EditPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Manage_Payment"
+            android:exported="false" />
+        <activity
+            android:name=".ViewRequestedWorkOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AcceptOpenWorkActivity"
+            android:exported="false" />
+        <activity
             android:name=".GuardianProfile"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:exported="true" />
-
+            android:exported="false" />
+        <activity
+            android:name=".ListAllWorkOrders"
+            android:exported="false" />
         <meta-data
             android:name="com.google.android.actions"
-            android:resource="@xml/navmenu" />
+            android:resource="@menu/navmenu" />
 
         <activity
             android:name=".CustomerProfile"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".YouthShovellerProfile"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -40,15 +56,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".User_registration"
-            android:exported="false" />
-        <activity
-            android:name=".Create_work_order"
-            android:exported="false" />
-
+        <activity android:name=".CreateUserActivity" />
     </application>
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 </manifest>

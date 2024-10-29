@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "679228455481",
+    "firebase_url": "https://shovelhero-e6ca1-default-rtdb.firebaseio.com",
+    "project_id": "shovelhero-e6ca1",
+    "storage_bucket": "shovelhero-e6ca1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679228455481:android:ac742973163fd837372be8",
+        "android_client_info": {
+          "package_name": "com.comp313.shovelhero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4b0wOycAZl2hXKDdvjwdb-g-0JquTFsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679228455481:android:efa82d3f8e634212372be8",
+        "android_client_info": {
+          "package_name": "com.comp313sec401.group4.shovelhero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4b0wOycAZl2hXKDdvjwdb-g-0JquTFsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

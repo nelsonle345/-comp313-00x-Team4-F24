@@ -1,62 +1,311 @@
 package com.comp313sec401.group4.shovelhero;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import java.io.IOException;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.comp313sec401.group4.shovelhero.Models.User;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class GuardianProfile extends AppCompatActivity {
-    private static final int PICK_IMAGE_REQUEST = 1;
-    private ImageButton btnAddIDPicture;
-    private ImageView imgProfilePicture;
+
+    DatabaseReference userTable;
+    private String userId;
+    private TextView usernameTV;
+    private TextView firstNameTV;
+    private TextView lastNameTV;
+    private TextView emailTV;
+    private TextView phoneTV;
+    private Spinner addressSpinner;
+    private Spinner linkedYouthSpinner;
+    private User currentUser;
+
+    Button btnAddYouth;
+    Button btnViewYouthProfile;
+    Button btnViewRatings;
+    Button btnViewJobs;
+    Button btnManagePaymentInfo;
+    Button btnManageProfileInfo;
+    Button btnAddAddress;
+    Button btnEditPassword;
+
+    //Link youth
+    private List<User> linkedYouthList;
+
+    EditText addYouthET;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_guardian_profile);
 
-        imgProfilePicture = findViewById(R.id.imgProfilePicture);
+        userTable = FirebaseDatabase.getInstance().getReference("users");
 
-        if (imgProfilePicture != null) {
-            imgProfilePicture.setOnClickListener(v -> openImageChooser());
-        } else {
-            Log.e("GuardianProfile", "ImageView imgProfilePicture is null.");
-        }
+        usernameTV = findViewById(R.id.tvUsername);
+        firstNameTV = findViewById(R.id.tvFirstName);
+        lastNameTV = findViewById(R.id.tvLastname);
+        emailTV = findViewById(R.id.tvEmail);
+        phoneTV = findViewById(R.id.tvPhone);
 
-        btnAddIDPicture = findViewById(R.id.btnAddIDPicture);
-    }
+        addressSpinner = findViewById(R.id.spinnerAddress);
 
-    private void openImageChooser() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
-    }
+        addYouthET = findViewById(R.id.etAddYouth);
+        btnAddYouth = findViewById(R.id.btnAddYouth);
+        linkedYouthSpinner = findViewById(R.id.spinnerYouths);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        btnViewYouthProfile = findViewById(R.id.btnViewYouthProfile);
+        btnViewRatings = findViewById(R.id.btnViewRatings);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
+        btnManagePaymentInfo = findViewById(R.id.btnManagePaymentInfo);
+        btnManageProfileInfo = findViewById(R.id.btnManageProfileInfo);
+        btnAddAddress = findViewById(R.id.btnAddAddress);
+        btnEditPassword = findViewById(R.id.btnEditPassword);
 
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                imgProfilePicture.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+        //GET USERID FROM LOGIN OR REGISTRATION
+        Intent intent = getIntent();
+        if (intent != null) {
+            userId = intent.getStringExtra("USER_ID");
+            if (userId != null) {
+                retrieveGuardianProfile(userId);
             }
         }
     }
+    private void retrieveGuardianProfile(String userId) {
+        userTable.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    User user = snapshot.getValue(User.class);
 
-    public void onUploadIDPictureClick(View view) {
-        openImageChooser();
+                    if (user != null) {
+                        //display user profile info
+                        usernameTV.setText("Username: " + user.getUserName());
+                        firstNameTV.setText("First Name: " + user.getFirstName());
+                        lastNameTV.setText(user.getLastName());
+                        emailTV.setText("Email: " + user.getEmail());
+                        phoneTV.setText("Phone Number: " + user.getPhoneNumber());
+
+
+
+                        //ADD YOUTH BUTTON
+                        btnAddYouth.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                System.out.println("this is the guardian being sent to link the youth: " + user.getUserName());
+                                linkYouthProfile(user);
+                            }
+                        });
+
+
+                        //MANAGE PROFILE BUTTON
+                        btnManageProfileInfo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(GuardianProfile.this, "Temp msg: Manage user profile under construction", Toast.LENGTH_SHORT).show();
+                                Intent intentManageYouthProfile = new Intent(GuardianProfile.this, EditProfileInfo.class);
+                                int guardianId = user.getUserId();
+                                intentManageYouthProfile.putExtra("USER_ID", guardianId);
+                                startActivity(intentManageYouthProfile);
+                            }
+                        });
+
+                        //MANAGE PAYMENT BUTTON
+                        btnManagePaymentInfo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(GuardianProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
+                                Intent intentManageYouthPayment = new Intent(GuardianProfile.this, Manage_Payment.class);
+                                int guardianId = user.getUserId();
+                                intentManageYouthPayment.putExtra("USER_ID", guardianId);
+                                startActivity(intentManageYouthPayment);
+                            }
+                        });
+
+
+                        //EDIT PASSWORD BUTTON
+                        btnEditPassword.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intentEditPassword = new Intent(GuardianProfile.this, EditPassword.class);
+                                int guardianId = user.getUserId();
+                                intentEditPassword.putExtra("USER_ID", guardianId);
+                                startActivity(intentEditPassword);
+                            }
+                        });
+                    } else {
+                        //handle no user data error
+                    }
+                } else {
+                    //handle user id does not exist
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //handle error
+            }
+        });
     }
+    private void linkYouthProfile(User guardian){
+        String youthUsername = addYouthET.getText().toString();
+
+        System.out.println("The youth username to link to the guardian, from edit text: " + youthUsername);
+
+        //CHECK IF USERNAME EXISTS
+        userTable.orderByChild("username").equalTo(youthUsername)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            for (DataSnapshot userSnapShot : snapshot.getChildren()) {
+                                User youthUser = userSnapShot.getValue(User.class);
+
+                                System.out.println("The youthId linking to the guardian profile: " + youthUser.getUserId());
+
+                                System.out.println("The youth account type: " + youthUser.getAccountType());
+
+                                //CHECK THAT USERNAME = YOUTH ACCT
+                                if (youthUser.getAccountType() == "Youth Shoveller") {
+
+                                    //readYouthProfilesFromFirebase(youthUser);
+                                    // addGuardianToYouthAccount(youthUser, guardian);
+                                    // addYouthToGuardianAccount(youthUser, guardian);
+                                }
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+//    private void addGuardianToYouthAccount(User youthUser, User guardianUser) {
+//        System.out.println("Adding guardian: :" + guardianUser.getUserName() + " to" + youthUser.getUserName());
+//
+////        userTable.child(youthUser.getUserId()).child("linkedusers").addValueEventListener(new ValueEventListener() {
+////            @Override
+////            public void onDataChange(DataSnapshot dataSnapshot) {
+////
+////                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+////                    //manually deserialize the HashMap
+////                    Map<String, Object> youthUserMap = (Map<String, Object>) snapshot.getValue();
+////
+////                    // retrieve values from the Hashmap
+////                    int userId = (int) youthUserMap.get("userId");
+////                    String accountType = (String) youthUserMap.get("accounttype");
+////                    String username = (String) youthUserMap.get("username");
+////                    String password = "Hidden";
+////                    String firstName = (String) youthUserMap.get("firstname");
+////                    String lastName = (String) youthUserMap.get("lastname");
+////                    String birthdate = (String) youthUserMap.get("birthdate");
+////                    String email = (String) youthUserMap.get("email");
+////                    String phoneNo = (String) youthUserMap.get("phonenumber");
+//                    // User userObject = new User("", username, password, firstName, accountType,firstName, lastName, birthdate, email, phoneNo, 5);
+//
+//                    // Add the User object to the linkedUsers HashMap in User model
+////                    youthUser.addLinkedUser(userId, userObject);
+////
+////                    DatabaseReference linkedUserReference = userTable.child(youthUser.getUserId()).child("linkedusers").child(youthUser.getUserId());
+////                    Map<String, Object> updateGuardianInfo = new HashMap<>();
+////
+////                    linkedUserReference.updateChildren(updateGuardianInfo)
+////                            .addOnSuccessListener(aVoid -> Toast.makeText(GuardianProfile.this, "Guardian Validation and Profile Pic added to youth profile successfully", Toast.LENGTH_SHORT).show())
+////                            //.addOnSuccessListener(addYouthToGuardianAccount(youthUser, guardianUser)
+////                            //.addOnFailureListener(e -> updateGuardianInfo.clear())
+////                            .addOnFailureListener(e -> Toast.makeText(GuardianProfile.this, "Unable to add validated : " + e.getMessage(), Toast.LENGTH_SHORT).show());
+//                }
+//
+//                // Retrieve list of linkedUsers from Hashmap
+//                // List<User> linkedUsers = new ArrayList<>(youthUser.getLinkedUsers().values());
+//
+//                // Update the Spinner with linked youth(s)
+////                ArrayAdapter<User> linkedYouthAdapter = new ArrayAdapter<>(GuardianProfile.this, android.R.layout.simple_spinner_item, linkedUsers);
+////                linkedYouthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+////                linkedYouthSpinner.setAdapter(linkedYouthAdapter);
+//
+//                // Enable or disable the youth spinner button based on the presence of linked User
+//                // linkedYouthSpinner.setEnabled(!linkedUsers.isEmpty());
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle error
+//            }
+//        });
+//    }
+//    private void addYouthToGuardianAccount(User youthUser, User guardianUser) {
+//        System.out.println("Adding guardian: :" + guardianUser.getUsername() + " to" + youthUser.getUsername());
+//
+//        userTable.child(guardianUser.getUserId()).child("linkedusers").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    //manually deserialize the HashMap
+//                    Map<String, Object> youthUserMap = (Map<String, Object>) snapshot.getValue();
+//
+//                    // retrieve values from the Hashmap
+//                    String userId = (String) youthUserMap.get("userId");
+//                    String accountType = (String) youthUserMap.get("accounttype");
+//                    String username = (String) youthUserMap.get("username");
+//                    String password = "Hidden";
+//                    String firstName = (String) youthUserMap.get("firstname");
+//                    String lastName = (String) youthUserMap.get("lastname");
+//                    String birthdate = (String) youthUserMap.get("birthdate");
+//                    String email = (String) youthUserMap.get("email");
+//                    String phoneNo = (String) youthUserMap.get("phonenumber");
+//
+//                    // Create new User object
+//                    User youthObject = new User(userId, accountType, username, password, firstName, lastName, birthdate, email, phoneNo);
+//
+//                    // Add the User object to the linkedUsers HashMap in User model
+//                    guardianUser.addLinkedUser(userId, youthObject);
+//
+//                    DatabaseReference linkedUserReference = userTable.child(guardianUser.getUserId()).child("linkedusers").child(youthObject.getUserId());
+//                    Map<String, Object> updateGuardianInfo = new HashMap<>();
+//
+//                    linkedUserReference.updateChildren(updateGuardianInfo)
+//                            .addOnSuccessListener(aVoid -> Toast.makeText(GuardianProfile.this, "Guardian Validation and Profile Pic added to youth profile successfully", Toast.LENGTH_SHORT).show())
+//                            //.addOnFailureListener(e -> updateGuardianInfo.clear())
+//                            .addOnFailureListener(e -> Toast.makeText(GuardianProfile.this, "Unable to add validated : " + e.getMessage(), Toast.LENGTH_SHORT).show());
+//                }
+//
+//                // Retrieve list of linkedUsers from Hashmap
+//                List<User> linkedUsers = new ArrayList<>(guardianUser.getLinkedUsers().values());
+//
+//                // Update the Spinner with linked youth(s)
+//                ArrayAdapter<User> linkedYouthAdapter = new ArrayAdapter<>(GuardianProfile.this, android.R.layout.simple_spinner_item, linkedUsers);
+//                linkedYouthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                linkedYouthSpinner.setAdapter(linkedYouthAdapter);
+//
+//                // Enable or disable the youth spinner button based on the presence of linked User
+//                linkedYouthSpinner.setEnabled(!linkedUsers.isEmpty());
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle error
+//            }
+//        });
+    // }
 }
