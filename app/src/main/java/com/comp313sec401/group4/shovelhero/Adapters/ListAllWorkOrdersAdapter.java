@@ -81,6 +81,14 @@ public class ListAllWorkOrdersAdapter extends RecyclerView.Adapter<ListAllWorkOr
             context.startActivity(intent);
 
         });
+
+        holder.btnRequestGuardian.setOnClickListener(view -> {
+
+            Intent intent = new Intent(context, AcceptOpenWorkActivity.class);
+            intent.putExtra("order", order);
+            context.startActivity(intent);
+
+        });
     }
 
     @Override
