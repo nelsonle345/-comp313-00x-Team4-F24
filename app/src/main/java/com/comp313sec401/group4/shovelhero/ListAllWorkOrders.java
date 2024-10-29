@@ -3,6 +3,7 @@ package com.comp313sec401.group4.shovelhero;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,8 @@ import java.util.List;
 
 public class ListAllWorkOrders extends AppCompatActivity {
 
+    List<WorkOrder> workOrders = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,6 @@ public class ListAllWorkOrders extends AppCompatActivity {
         RecyclerView allOrdersView = findViewById(R.id.listAllWorkOrders);
         allOrdersView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<WorkOrder> workOrders = new ArrayList<>();
         ListAllWorkOrdersAdapter adapter = new ListAllWorkOrdersAdapter(this, workOrders);
 
         allOrdersView.setAdapter(adapter);
@@ -59,6 +61,31 @@ public class ListAllWorkOrders extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("Error", "Error fetching orders: " + error);
+            }
+        });
+
+        Button btnRefresh = findViewById(R.id.refreshButton);
+        btnRefresh.setOnClickListener(view -> {
+            loadData(ref);
+        });
+    }
+    private void loadData(DatabaseReference ref) {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                workOrders.clear();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    WorkOrder order = dataSnapshot.getValue(WorkOrder.class);
+                    if (order != null && order.getStatus().equals("Open")) {
+                        workOrders.add(order);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
