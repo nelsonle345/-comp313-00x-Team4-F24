@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import com.comp313sec401.group4.shovelhero.models.WorkOrder;
+import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -87,6 +87,7 @@ public class Create_work_order extends AppCompatActivity {
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
         //requestedDate.setText(dateTime);
 
+        // Todo: No further implementation after adding to list.
         itemCheckBoxList = new ArrayList<>();
         itemCheckBoxList.add(findViewById(R.id.cbDriveway));
         itemCheckBoxList.add(findViewById(R.id.cbSidewalk));
