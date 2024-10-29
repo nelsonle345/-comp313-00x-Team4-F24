@@ -5,182 +5,112 @@ import android.widget.TextClock;
 import java.util.Date;
 import java.util.List;
 import android.media.Image;
+
+import com.google.firebase.database.PropertyName;
+
 public class WorkOrder {
 
 
     // attributes
-    private String workOrderId;
+    private int workOrderId;
     private String status;
     private int squareFootage;
-    private boolean isDerivewayChecked;
-    private boolean isWalkwayChecked;
-    private boolean isSidewayChecked;
-    private List<String> itemsRequested;
-    private Date requestDate;
+    private String area; // will be a areas divided by ';'. I.e. driveway;sidewalk
 
-    private CalendarView requestDatePicker;
-    private TextClock requestTimePicker;
-    private String requestedDateTime;
-    private String specialInstructions;
-    private Image completedImage;
-    private Image issueImage;
+    private String requestDate;
+
+    private String requestUser;
+
+    private String urgency;
+    private String specificdate; // Specific Time
+    private String instructions;
+
     private double price;
 
     // foreign key from customer class
-    private String customerId;
-    private String customerAddressId;
+    private int userId;
+    private String userAddress;
+
+    // private CalendarView requestDatePicker;
+    // private List<String> itemsRequested;
+    // private Image completedImage;
+    // private Image issueImage;
 
     public WorkOrder() {}
 
     // constructor
-    public WorkOrder(String workOrderId, Date requestDate, String status, int squareFootage, List<String> itemsRequested, String customerId, String customerAddressId) {
+    public WorkOrder(int workOrderId, String area, String instructions, double price, String requestDate, String requestUser,
+                     String specificdate, int squareFootage, String status, String urgency,  int userId, String userAddress) {
         this.workOrderId = workOrderId;
-        this.requestDate = requestDate;
-        this.status = status;
-        this.squareFootage = squareFootage;
-        this.itemsRequested = itemsRequested;
-        this.customerId = customerId;
-        this.customerAddressId = customerAddressId;
-    }
-
-
-    public String getWorkOrderId() {
-        return workOrderId;
-    }
-
-    public void setWorkOrderId(String workOrderId) {
-        this.workOrderId = workOrderId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getSquareFootage() {
-        return squareFootage;
-    }
-
-    public void setSquareFootage(int squareFootage) {
-        this.squareFootage = squareFootage;
-    }
-
-    public boolean isDerivewayChecked() {
-        return isDerivewayChecked;
-    }
-
-    public void setDerivewayChecked(boolean derivewayChecked) {
-        isDerivewayChecked = derivewayChecked;
-    }
-
-    public boolean isWalkwayChecked() {
-        return isWalkwayChecked;
-    }
-
-    public void setWalkwayChecked(boolean walkwayChecked) {
-        isWalkwayChecked = walkwayChecked;
-    }
-
-    public boolean isSidewayChecked() {
-        return isSidewayChecked;
-    }
-
-    public void setSidewayChecked(boolean sidewayChecked) {
-        isSidewayChecked = sidewayChecked;
-    }
-
-    public List<String> getItemsRequested() {
-        return itemsRequested;
-    }
-
-    public void setItemsRequested(List<String> itemsRequested) {
-        this.itemsRequested = itemsRequested;
-    }
-
-    public Date getRequestDate() {
-        return requestDate;
-    }
-
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
-    }
-
-    public CalendarView getRequestDatePicker() {
-        return requestDatePicker;
-    }
-
-    public void setRequestDatePicker(CalendarView requestDatePicker) {
-        this.requestDatePicker = requestDatePicker;
-    }
-
-    public TextClock getRequestTimePicker() {
-        return requestTimePicker;
-    }
-
-    public void setRequestTimePicker(TextClock requestTimePicker) {
-        this.requestTimePicker = requestTimePicker;
-    }
-
-    public String getRequestedDateTime() {
-        return requestedDateTime;
-    }
-
-    public void setRequestedDateTime(String requestedDateTime) {
-        this.requestedDateTime = requestedDateTime;
-    }
-
-    public String getSpecialInstructions() {
-        return specialInstructions;
-    }
-
-    public void setSpecialInstructions(String specialInstructions) {
-        this.specialInstructions = specialInstructions;
-    }
-
-    public Image getCompletedImage() {
-        return completedImage;
-    }
-
-    public void setCompletedImage(Image completedImage) {
-        this.completedImage = completedImage;
-    }
-
-    public Image getIssueImage() {
-        return issueImage;
-    }
-
-    public void setIssueImage(Image issueImage) {
-        this.issueImage = issueImage;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
+        this.area = area;
+        this.instructions = instructions;
         this.price = price;
+        this.requestDate = requestDate;
+        this.requestUser = requestUser;
+        this.specificdate = specificdate;
+        this.squareFootage = squareFootage;
+        this.status = status;
+        this.urgency = urgency;
+        this.userId = userId;
+        this.userAddress = userAddress;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
+    @PropertyName("workorderid")
+    public int getWorkOrderId() { return workOrderId; }
+    @PropertyName("workorderid")
+    public void setWorkOrderId(int workOrderId) { this.workOrderId = workOrderId; }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
+    @PropertyName("status")
+    public String getStatus() { return status; }
+    @PropertyName("status")
+    public void setStatus(String status) { this.status = status; }
 
-    public String getCustomerAddressId() {
-        return customerAddressId;
-    }
+    @PropertyName("squarefoot")
+    public int getSquareFootage() { return squareFootage; }
+    @PropertyName("squarefoot")
+    public void setSquareFootage(int squareFootage) { this.squareFootage = squareFootage; }
 
-    public void setCustomerAddressId(String customerAddressId) {
-        this.customerAddressId = customerAddressId;
-    }
+    @PropertyName("area")
+    public String getArea() { return area; }
+    @PropertyName("area")
+    public void setArea(String area) { this.area = area; }
 
+    @PropertyName("requestdate")
+    public String getRequestDate() { return requestDate; }
+    @PropertyName("requestdate")
+    public void setRequestDate(String requestDate) { this.requestDate = requestDate; }
 
+    @PropertyName("requestuser")
+    public String getRequestUser() { return requestUser; }
+    @PropertyName("requestuser")
+    public void setRequestUser(String requestUser) { this.requestUser = requestUser; }
+    @PropertyName("urgency")
+    public String getUrgency() { return urgency; }
+    @PropertyName("urgency")
+    public void setUrgency(String urgency) { this.urgency = urgency; }
+    @PropertyName("specificdate")
+    public String getSpecificdate() { return specificdate; }
+    @PropertyName("specificdate")
+    public void setSpecificdate(String specificdate) { this.specificdate = specificdate; }
 
+    @PropertyName("instructions")
+    public String getInstructions() { return instructions; }
+    @PropertyName("instructions")
+    public void setInstructions(String instructions) { this.instructions = instructions; }
+    @PropertyName("price")
+    public double getPrice() { return price; }
+    @PropertyName("price")
+    public void setPrice(double price) { this.price = price; }
+
+    @PropertyName("user_id")
+    public int getUserId() { return userId; }
+    @PropertyName("user_id")
+    public void setUserId(int userId) { this.userId = userId; }
+
+    @PropertyName("address")
+    public String getUserAddress() { return userAddress; }
+
+    @PropertyName("address")
+    public void setUserAddress(String userAddress) { this.userAddress = userAddress; }
 
 }
