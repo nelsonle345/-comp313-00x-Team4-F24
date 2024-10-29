@@ -41,6 +41,8 @@ public class AcceptOpenWorkActivity extends AppCompatActivity {
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO: This should create a new guardian_approval_request with youthId, guardianId (of youth), propertyId, workorderId.
+                // This should be sent to guardian_approval_request table in Firebase.
                 String comments = commentsEditText.getText().toString().trim();
                 Toast.makeText(AcceptOpenWorkActivity.this, "Work Order Accepted", Toast.LENGTH_SHORT).show();
             }
