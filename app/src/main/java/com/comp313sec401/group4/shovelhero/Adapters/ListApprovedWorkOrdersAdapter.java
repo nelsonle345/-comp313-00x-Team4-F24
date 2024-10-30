@@ -59,7 +59,7 @@ public class ListApprovedWorkOrdersAdapter extends RecyclerView.Adapter<ListAppr
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.work_order_item_adapter, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.approved_order_adapter, parent, false);
         return new ListApprovedWorkOrdersAdapter.MyViewHolder(view);
     }
 

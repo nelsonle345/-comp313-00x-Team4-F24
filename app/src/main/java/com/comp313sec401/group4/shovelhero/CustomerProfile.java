@@ -2,6 +2,8 @@ package com.comp313sec401.group4.shovelhero;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +15,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.comp313sec401.group4.shovelhero.Models.User;
+import com.comp313sec401.group4.shovelhero.Adapters.ListShovelorAcceptedOrdersAdapter;
+import com.comp313sec401.group4.shovelhero.models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerProfile extends AppCompatActivity {
 
@@ -39,6 +45,9 @@ public class CustomerProfile extends AppCompatActivity {
     Button btnManagePaymentInfo;
     Button btnEditPassword;
     Button btnViewMyRatings;
+    private RecyclerView rvPendingWorkOrders;
+    private ListShovelorAcceptedOrdersAdapter adapter;
+    private List<User> acceptedUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,15 @@ public class CustomerProfile extends AppCompatActivity {
         btnEditPassword = findViewById(R.id.btnEditPassword);
         btnViewMyRatings = findViewById(R.id.btnViewMyRatings);
 
+        // for displaying accepted work order
+        rvPendingWorkOrders = findViewById(R.id.rvPendingWorkOrders);
+        acceptedUsers = new ArrayList<>();
+        adapter = new ListShovelorAcceptedOrdersAdapter(this, acceptedUsers);
+        rvPendingWorkOrders.setAdapter(adapter);
+        rvPendingWorkOrders.setLayoutManager(new LinearLayoutManager(this));
+
+        // Call a new method to load accepted users
+        loadAcceptedUsers(userId);
         //GET USERID FROM LOGIN OR REGISTRATION
         Intent intent = getIntent();
         if (intent != null) {
@@ -72,6 +90,46 @@ public class CustomerProfile extends AppCompatActivity {
             }
         }
     }
+
+    private void loadAcceptedUsers(String userId) {
+        DatabaseReference workOrdersTable = FirebaseDatabase.getInstance().getReference("work_orders");
+
+        // Assume "acceptedBy" is the field with userId who accepted the work order
+        workOrdersTable.orderByChild("acceptedBy").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                acceptedUsers.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String acceptedUserId = snapshot.child("acceptedBy").getValue(String.class); // Fetch userId who accepted the work order
+
+                    if (acceptedUserId != null) {
+                        // Query userTable to fetch User details based on acceptedUserId
+                        userTable.child(acceptedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot userSnapshot) {
+                                User acceptedUser = userSnapshot.getValue(User.class);
+                                if (acceptedUser != null) {
+                                    acceptedUsers.add(acceptedUser);
+                                    adapter.notifyDataSetChanged(); // Notify adapter here to update after each retrieval
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Toast.makeText(CustomerProfile.this, "Failed to load user details.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(CustomerProfile.this, "Failed to load accepted work orders.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void retrieveCustomerProfileData(String userId) {
         System.out.println("customer ID recieved to retrieve cx profile: " + userId);
 
