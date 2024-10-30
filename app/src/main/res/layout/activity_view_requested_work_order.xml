@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8F5E9"
+    android:background="#F3E5F5"
     android:padding="16dp">
 
     <LinearLayout
@@ -15,75 +15,65 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
+            android:src="@drawable/logo_color"
             android:contentDescription="Shovel Hero Logo"
-            android:src="@drawable/shovel_hero_logo"
             android:layout_marginBottom="16dp"/>
 
         <TextView
-            android:id="@+id/lblWorkOrderDetails"
+            android:id="@+id/lblRequestedWorkOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Work Order Details"
+            android:text="Requested Work Order"
             android:gravity="center"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginBottom="16dp"/>
 
         <TextView
-            android:id="@+id/dateOfRequest"
+            android:id="@+id/requestedWorkOrderId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Date Of Request: 01/01/2024"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:id="@+id/nameOfRequester"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Name of Requester: John Doe"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:id="@+id/workOrderId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Work Order ID: 12345"
+            android:text="Work Order ID: 98765"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 
         <TextView
-            android:id="@+id/workOrderDescription"
+            android:id="@+id/requestedWorkOrderDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description: Snow removal for driveway and walkway."
+            android:text="Description: Lawn mowing and leaf removal."
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 
         <TextView
-            android:id="@+id/workOrderLocation"
+            android:id="@+id/requestedWorkOrderLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Location: 123 Main Street, Toronto"
+            android:text="Location: 456 Elm Street, Toronto"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 
         <TextView
-            android:id="@+id/workOrderPriority"
+            android:id="@+id/requestedWorkOrderPriority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Priority: Urgent"
+            android:text="Priority: Medium"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/requestedWorkOrderStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status: Pending Approval"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"/>
 
         <EditText
-            android:id="@+id/etComments"
+            android:id="@+id/etViewComments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Additional Comments (optional)"
+            android:hint="Comments (optional)"
             android:inputType="textMultiLine"
             android:gravity="top|start"
             android:minLines="3"
@@ -99,21 +89,44 @@
             android:layout_marginBottom="16dp">
 
             <Button
-                android:id="@+id/acceptButton"
+                android:id="@+id/editButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Accept"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="#4CAF50"/>
+                android:layout_weight="1"
+                android:backgroundTint="#2196F3"
+                android:text="Edit" />
 
             <Button
-                android:id="@+id/declineButton"
+                android:id="@+id/closeButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Decline"
-                android:backgroundTint="#F44336"/>
+                android:text="Close"
+                android:backgroundTint="#9E9E9E"/>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/lblRequestDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Additional Request Details"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/requestDetailsContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Service requested for the front and backyard. Please ensure to bag the leaves after mowing."
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
     </LinearLayout>
 </ScrollView>

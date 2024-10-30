@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,7 +20,16 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Create_work_order extends AppCompatActivity {
+
+ private static final String TAG = "Create_work_order";
+
+
+
     private String workOrderId;
     private TextView addressTextView;
     private TextView sqFootageTextView;
@@ -77,6 +87,7 @@ public class Create_work_order extends AppCompatActivity {
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
         //requestedDate.setText(dateTime);
 
+        // Todo: No further implementation after adding to list.
         itemCheckBoxList = new ArrayList<>();
         itemCheckBoxList.add(findViewById(R.id.cbDriveway));
         itemCheckBoxList.add(findViewById(R.id.cbSidewalk));
@@ -84,6 +95,8 @@ public class Create_work_order extends AppCompatActivity {
 
         btnOrderShovelling = findViewById(R.id.btnOrderShovelling);
         btnCancelOrder = findViewById(R.id.btnCancel);
+
+
 
         btnOrderShovelling.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +118,7 @@ public class Create_work_order extends AppCompatActivity {
         });
         System.out.println("Work order id intent ok from profile: " + currentWOId);
     }
+
     // Validation function for Date
     private boolean isValidDate(String date) {
         try {
@@ -133,4 +147,6 @@ public class Create_work_order extends AppCompatActivity {
     private boolean isValidUserName(String userName) {
         return userName.length() >= 5 && userName.length() <= 20;
     }
+
+
 }
