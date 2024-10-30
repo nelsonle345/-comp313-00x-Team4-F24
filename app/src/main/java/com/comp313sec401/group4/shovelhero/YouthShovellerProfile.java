@@ -2,7 +2,9 @@ package com.comp313sec401.group4.shovelhero;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.bumptech.glide.Glide;
+import com.comp313sec401.group4.shovelhero.Adapters.ListApprovedWorkOrdersAdapter;
 import com.comp313sec401.group4.shovelhero.Models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class YouthShovellerProfile extends AppCompatActivity {
+
+
+    private ListApprovedWorkOrdersAdapter adapter;
+    private List<com.comp313sec401.group4.shovelhero.Models.WorkOrder> approvedWorkOrderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,18 @@ public class YouthShovellerProfile extends AppCompatActivity {
         DatabaseReference userTable = FirebaseDatabase.getInstance().getReference("users");
 
         Button btnViewRatings = findViewById(R.id.btnViewRatings);
+
+        RecyclerView rvPendingWorkOrders = findViewById(R.id.rvPendingWorkOrders);
+        rvPendingWorkOrders.setLayoutManager(new LinearLayoutManager(this));
+        approvedWorkOrderList = new ArrayList<>();
+        adapter = new ListApprovedWorkOrdersAdapter(this, approvedWorkOrderList);
+        rvPendingWorkOrders.setAdapter(adapter);
+
+        // Initialize Firebase reference to guardian_approval_request node
+        userTable = FirebaseDatabase.getInstance().getReference("guardian_approval_request");
+
+        fetchApprovedWorkOrdersFromFirebase();
+
 
         // Get user intent passed from login page
         int userId = 0;
@@ -96,6 +118,34 @@ public class YouthShovellerProfile extends AppCompatActivity {
 //            }
 //        });
     }
+
+
+    // to fetch approved workorder from firebase
+    private void fetchApprovedWorkOrdersFromFirebase() {
+
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("workOrders");
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    approvedWorkOrderList.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        WorkOrder order = dataSnapshot.getValue(WorkOrder.class);
+                        if (order != null && "approved".equalsIgnoreCase(order.getStatus())) {
+                            approvedWorkOrderList.add(order);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("FirebaseError", "Failed to read approved work orders", error.toException());
+                    Toast.makeText(YouthShovellerProfile.this, "Failed to load data.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
 
     private void retrieveYouthProfile(int userId, DatabaseReference ref){
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
