@@ -40,6 +40,14 @@
             android:name=".ListAllWorkOrders"
             android:exported="false" />
 
+        <activity android:name=".ListOpenWorkOrder"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@menu/navmenu" />
