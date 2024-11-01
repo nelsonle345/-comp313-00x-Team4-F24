@@ -15,4 +15,25 @@
         <item>Adult Shoveller</item>
         <item>Fundraiser</item>
     </string-array>
+    <!-- Customer Profile Activity -->
+    <string name="create_user">Create User</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="password">Password</string>
+    <string name="first_name">First Name</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="email">Email</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="account_type">Account Type</string>
+
+    <!-- Fragment Texts -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
 </resources>
