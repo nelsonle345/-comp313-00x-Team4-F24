@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.comp313sec401.group4.shovelhero.R;
 import com.comp313sec401.group4.shovelhero.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
