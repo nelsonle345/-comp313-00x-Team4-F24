@@ -2,6 +2,7 @@ package com.comp313sec401.group4.shovelhero;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -32,6 +33,9 @@ public class YouthShovellerProfile extends AppCompatActivity {
         DatabaseReference userTable = FirebaseDatabase.getInstance().getReference("users");
 
         Button btnViewRatings = findViewById(R.id.btnViewRatings);
+
+        RecyclerView rvPendingWorkOrders = findViewById(R.id.rvPendingWorkOrders);
+        userTable = FirebaseDatabase.getInstance().getReference("guardian_approval_request");
 
         // Get user intent passed from login page
         int userId = 0;
