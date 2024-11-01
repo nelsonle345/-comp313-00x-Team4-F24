@@ -32,7 +32,7 @@ public class YouthShovellerProfile extends AppCompatActivity {
 
 
     private ListApprovedWorkOrdersAdapter adapter;
-    private List<com.comp313sec401.group4.shovelhero.Models.WorkOrder> approvedWorkOrderList;
+    private List<com.comp313sec401.group4.shovelhero.models.WorkOrder> approvedWorkOrderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
