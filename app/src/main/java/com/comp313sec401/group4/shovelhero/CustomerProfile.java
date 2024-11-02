@@ -162,8 +162,8 @@ public class CustomerProfile extends AppCompatActivity {
                             public void onClick(View view) {
                                 Toast.makeText(CustomerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
                                 Intent intentManageCustomerProfile = new Intent(CustomerProfile.this, EditProfileInfo.class);
-                                int youthId = user.getUserId();
-                                intentManageCustomerProfile.putExtra("USER_ID", youthId);
+                                int customerId = user.getUserId();
+                                intentManageCustomerProfile.putExtra("USER_ID", customerId);
                                 startActivity(intentManageCustomerProfile);
                             }
                         });
@@ -171,7 +171,6 @@ public class CustomerProfile extends AppCompatActivity {
                         //MANAGE PAYMENT BUTTON
                         btnManagePaymentInfo.setOnClickListener(new View.OnClickListener() {
                             @Override
-
                             public void onClick(View view) {
                                  Intent intentManagePayment = new Intent(CustomerProfile.this, Manage_Payment.class);
                                  int customerId = user.getUserId();
@@ -184,12 +183,22 @@ public class CustomerProfile extends AppCompatActivity {
                         //EDIT PASSWORD BUTTON
                         btnEditPassword.setOnClickListener(new View.OnClickListener() {
                             @Override
-
                             public void onClick(View view) {
                                 Intent intentEditPassword = new Intent(CustomerProfile.this, EditPassword.class);
                                 int customerId = user.getUserId();
                                 intentEditPassword.putExtra("USER_ID", customerId);
                                 startActivity(intentEditPassword);
+                            }
+                        });
+
+                        //ADD ADDRESS BUTTON
+                        btnAddAddress.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intentAddAddress = new Intent(CustomerProfile.this, AddPropertyActivity.class);
+                                int customerId = user.getUserId();
+                                intentAddAddress.putExtra("USER_ID", customerId);
+                                startActivity(intentAddAddress);
                             }
                         });
 
