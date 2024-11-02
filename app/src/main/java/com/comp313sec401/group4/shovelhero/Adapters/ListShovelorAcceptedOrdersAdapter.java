@@ -1,7 +1,7 @@
 package com.comp313sec401.group4.shovelhero.Adapters;
 
 import androidx.recyclerview.widget.RecyclerView;
-import com.comp313sec401.group4.shovelhero.models.User;
+import com.comp313sec401.group4.shovelhero.Models.User;
 
 import android.content.Context;
 import android.view.LayoutInflater;

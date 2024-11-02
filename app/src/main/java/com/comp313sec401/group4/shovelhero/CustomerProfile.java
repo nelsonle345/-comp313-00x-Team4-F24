@@ -10,13 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.comp313sec401.group4.shovelhero.Adapters.ListShovelorAcceptedOrdersAdapter;
-import com.comp313sec401.group4.shovelhero.models.User;
+import com.comp313sec401.group4.shovelhero.Models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

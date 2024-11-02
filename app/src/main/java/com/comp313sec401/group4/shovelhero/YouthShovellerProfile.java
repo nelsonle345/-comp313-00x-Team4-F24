@@ -5,14 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +29,7 @@ public class YouthShovellerProfile extends AppCompatActivity {
 
 
     private ListApprovedWorkOrdersAdapter adapter;
-    private List<com.comp313sec401.group4.shovelhero.models.WorkOrder> approvedWorkOrderList;
+    private List<com.comp313sec401.group4.shovelhero.Models.WorkOrder> approvedWorkOrderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
