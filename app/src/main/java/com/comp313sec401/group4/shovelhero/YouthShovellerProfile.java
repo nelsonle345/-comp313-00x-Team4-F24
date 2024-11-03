@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +48,7 @@ public class YouthShovellerProfile extends AppCompatActivity {
         rvPendingWorkOrders.setAdapter(adapter);
 
         // Initialize Firebase reference to guardian_approval_request node
-        userTable = FirebaseDatabase.getInstance().getReference("guardian_approval_request");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("guardian_approval_requests");
 
         fetchApprovedWorkOrdersFromFirebase();
 
@@ -122,18 +123,35 @@ public class YouthShovellerProfile extends AppCompatActivity {
 
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("workOrders");
 
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    approvedWorkOrderList.clear();
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        WorkOrder order = dataSnapshot.getValue(WorkOrder.class);
-                        if (order != null && "approved".equalsIgnoreCase(order.getStatus())) {
-                            approvedWorkOrderList.add(order);
-                        }
+//            databaseReference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    approvedWorkOrderList.clear();
+//                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                        WorkOrder order = dataSnapshot.getValue(WorkOrder.class);
+//                        if (order != null && "approved".equalsIgnoreCase(order.getStatus())) {
+//                            approvedWorkOrderList.add(order);
+//                        }
+//                    }
+//                    adapter.notifyDataSetChanged();
+//                }
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                approvedWorkOrderList.clear();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    WorkOrder workOrder = dataSnapshot.getValue(WorkOrder.class);
+                    if(workOrder != null && workOrder.getStatus().equals("approved")) {
+                        approvedWorkOrderList.add(workOrder);
                     }
-                    adapter.notifyDataSetChanged();
                 }
+
+                adapter.notifyDataSetChanged();
+             //   rvPendingWorkOrders.setAdapter(adapter);
+            }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {

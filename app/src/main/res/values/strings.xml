@@ -15,6 +15,14 @@
         <item>Adult Shoveller</item>
         <item>Fundraiser</item>
     </string-array>
+
+    <!--Payement type -->
+    <string-array name="payment_types">
+        <item>Credit Card</item>
+        <item>Debit Card</item>
+        <item>PayPal</item>
+        <!-- Add other payment types as needed -->
+    </string-array>
     <!-- Customer Profile Activity -->
     <string name="create_user">Create User</string>
     <string name="username">Username</string>

@@ -1,12 +1,10 @@
-package com.comp313sec401.group4.shovelhero;
+package com.comp313sec401.group4.shovelhero.Adapters;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import com.comp313sec401.group4.shovelhero.Adapters.ListAllWorkOrdersAdapter;
 import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
@@ -16,18 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 //import com.comp313sec401.group4.shovelhero.databinding.ActivityViewApprovedWorkOrderBinding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.comp313sec401.group4.shovelhero.R;
 
 public class ApproveWorkOrderActivity extends AppCompatActivity {
 
