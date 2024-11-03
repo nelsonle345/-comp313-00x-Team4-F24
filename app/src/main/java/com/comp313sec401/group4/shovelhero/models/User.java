@@ -1,184 +1,105 @@
-package com.comp313sec401.group4.shovelhero.models;
-import android.media.Image;
+package com.comp313sec401.group4.shovelhero.Models;
+
+import com.google.firebase.database.PropertyName;
+
 import java.util.HashMap;
 
 public class User {
+    private String userId;
+    private String fname, lname, email, username, password, phonenumber;
+    private String addedDate;
+    private String birthdate;
+    private String accountType;
+    private HashMap<String, User> linkedUsers;
 
-    // attributes
-  private String userId;
-  private String userName;
-  private String password;
-  private String userType;
-
-  private String firstName;
-  private String lastName;
-
-  private String birthDate;
-  private String email;
-  private String phoneNumber;
-    private Image profilePic;
-    private Image idProof;
-
-    private String  guardianIdUrl; //on Guardian view only
-    private boolean guardianIdValidated; // --> only available to app team // I don't think Firebase works with complex Android UI (boolean)?
-    private int shovellerRadius; // --> how far is shoveller willing to walk
-
-
-
-    // getters and setters
-
-
-    public String getAddress() {
-        return address;
+    public User() {
+        fname = "";
+        lname = "";
+        email = "";
+        username = "";
+        password = "";
+        phonenumber = "";
+        addedDate = "";
+        birthdate = "";
+        accountType = "";
+        linkedUsers = new HashMap<>();
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    private String address;
-  private int age;
-
-    //construcutor
-    public User(String address,String userId, String userName, String password, String userType, String firstName, String lastName, String birthDate, String email, String phoneNumber, int age) {
+    public User(String userId, String accountType, String username, String password, String fname, String lname, String birthdate, String email, String phonenumber) {
         this.userId = userId;
-        this.userName = userName;
-        this.password = password;
-        this.userType = userType;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.fname = fname;
+        this.lname = lname;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.age = age;
-        this.address=address;
+        this.username = username;
+        this.password = password;
+        this.phonenumber = phonenumber;
+        //this.addedDate = addedDate;
+        this.birthdate = birthdate;
+        this.accountType = accountType;
     }
 
+    @PropertyName("userId")
     public String getUserId() {
         return userId;
     }
 
+    @PropertyName("userId")
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    @PropertyName("firstname")
+    public String getFname() { return fname; }
+    @PropertyName("firstname")
+    public void setFname(String fname) { this.fname = fname; }
+    @PropertyName("lastname")
+    public String getLname() { return lname; }
+    @PropertyName("lastname")
+    public void setLname(String lname) { this.lname = lname; }
+    @PropertyName("email")
+    public String getEmail() { return email; }
+    @PropertyName("email")
+    public void setEmail(String email) { this.email = email; }
+    @PropertyName("username")
+    public String getUsername() { return username; }
+    @PropertyName("username")
+    public void setUsername(String username) { this.username = username; }
 
-    public String getUserName() {
-        return userName;
+    @PropertyName("password")
+    public String getPassword() { return password; }
+    @PropertyName("password")
+    public void setPassword(String password) { this.password = password; }
+
+    @PropertyName("phonenumber")
+    public String getPhonenumber() { return phonenumber; }
+    @PropertyName("phonenumber")
+    public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
+
+    @PropertyName("date-added")
+    public String getAddedDate() { return addedDate; }
+    @PropertyName("date-added")
+    public void setAddedDate(String addedDate) { this.addedDate = addedDate; }
+
+    @PropertyName("birthdate")
+    public String getBirthdate() { return addedDate; }
+    @PropertyName("birthdate")
+    public void setBirthdate(String birthDate) { this.birthdate = birthDate; }
+
+    @PropertyName("accounttype")
+    public String getAccountType() { return accountType; }
+    @PropertyName("accounttype")
+    public void setAccountType(String accountType) { this.accountType = accountType; }
+
+    public void addLinkedUser(String id, User user) {
+        linkedUsers.put(id, user);
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @PropertyName("linkedusers")
+    public HashMap<String, User> getLinkedUsers() {
+        return linkedUsers;
     }
 
-    public String getPassword() {
-        return password;
+    @PropertyName("linkedusers")
+    public void setLinkedUsers(HashMap<String, User> linkedUsers) {
+        this.linkedUsers = linkedUsers;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Image getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(Image profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public Image getIdProof() {
-        return idProof;
-    }
-
-    public void setIdProof(Image idProof) {
-        this.idProof = idProof;
-    }
-
-    public String getGuardianIdUrl() {
-        return guardianIdUrl;
-    }
-
-    public void setGuardianIdUrl(String guardianIdUrl) {
-        this.guardianIdUrl = guardianIdUrl;
-    }
-
-    public boolean isGuardianIdValidated() {
-        return guardianIdValidated;
-    }
-
-    public void setGuardianIdValidated(boolean guardianIdValidated) {
-        this.guardianIdValidated = guardianIdValidated;
-    }
-
-    public int getShovellerRadius() {
-        return shovellerRadius;
-    }
-
-    public void setShovellerRadius(int shovellerRadius) {
-        this.shovellerRadius = shovellerRadius;
-    }
-
-
-
-
-
-
-
-
 }
