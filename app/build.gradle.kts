@@ -31,27 +31,35 @@ android {
             )
         }
     }
+
+    // Set Java compatibility to Java 11
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
+
+    // Ensure Kotlin compatibility with Java 11
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"  // Updated to match Java compatibility
     }
+
     buildFeatures {
         compose = true
+        viewBinding = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
-dependencies {
 
+dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
     implementation("androidx.activity:activity-compose:1.9.3")
@@ -64,6 +72,10 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.activity:activity-ktx:1.9.3")
+    implementation("androidx.navigation:navigation-fragment:2.8.3")
+    implementation("androidx.navigation:navigation-ui:2.8.3")
+    implementation("com.google.firebase:firebase-database:21.0.0")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -72,10 +84,12 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // Firebase dependencies
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
-    implementation("com.firebaseui:firebase-ui-database:8.0.0")
+    implementation("com.firebaseui:firebase-ui-database:8.0.2")
     implementation("com.google.firebase:firebase-analytics")
 
+    // Parse dependencies
     implementation("com.parse.bolts:bolts-tasks:1.4.0")
     implementation("com.github.parse-community.Parse-SDK-Android:parse:4.3.0")
 }

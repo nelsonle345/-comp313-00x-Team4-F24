@@ -15,6 +15,10 @@
         android:theme="@style/Theme.ShovelHero"
         tools:targetApi="31">
         <activity
+            android:name=".ui.theme.ViewApprovedWorkOrderActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ShovelHero" />
+        <activity
             android:name=".EditProfileInfo"
             android:exported="false" />
         <activity
@@ -35,6 +39,15 @@
         <activity
             android:name=".ListAllWorkOrders"
             android:exported="false" />
+
+        <activity android:name=".ListOpenWorkOrder"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@menu/navmenu" />
