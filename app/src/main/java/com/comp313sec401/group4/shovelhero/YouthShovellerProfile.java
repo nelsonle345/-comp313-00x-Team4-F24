@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.bumptech.glide.Glide;
 import com.comp313sec401.group4.shovelhero.Models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,8 +37,9 @@ public class YouthShovellerProfile extends AppCompatActivity {
         userTable = FirebaseDatabase.getInstance().getReference("guardian_approval_request");
 
         // Get user intent passed from login page
-        int userId = 0;
+        int userId;
         Intent intent = getIntent();
+
         if (intent != null) {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
@@ -48,57 +48,42 @@ public class YouthShovellerProfile extends AppCompatActivity {
                 if (userId != 0) {
                     retrieveYouthProfile(userId, userTable);
                 }
+            } else {
+                userId = 0;
             }
         } else {
             userId = 0;
         }
 
-        // TODO: add ManageProfile Functionality
-        Button btnManageProfileInfo = findViewById(R.id.btnManageProfileInfo);
-//        btnManageProfileInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
-//                Intent intentManageYouthProfile = new Intent(YouthShovellerProfile.this, EditProfileInfo.class);
-//                String youthId = user.getUserId();
-//                intentManageYouthProfile.putExtra("USER_ID", youthId);
-//                startActivity(intentManageYouthProfile);
-//            }
-//        });
-
         Button btnViewJobs = findViewById(R.id.btnViewJobs);
-        int finalUserId = userId;
         btnViewJobs.setOnClickListener(view -> {
             Intent intentViewYouthJobs = new Intent(YouthShovellerProfile.this, ListAllWorkOrders.class);
-            intentViewYouthJobs.putExtra("user_id", finalUserId);
+            intentViewYouthJobs.putExtra("user_id", userId);
             startActivity(intentViewYouthJobs);
         });
 
-        // TODO: Need to implement managementPayment Info Button
         Button btnManagePaymentInfo = findViewById(R.id.btnManagePaymentInfo);
-//        btnManagePaymentInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
-//
-//                Intent intentManageYouthPayment = new Intent(YouthShovellerProfile.this, Manage_Payment.class);
-//                String youthId = user.getUserId();
-//                intentManageYouthPayment.putExtra("USER_ID", youthId);
-//                startActivity(intentManageYouthPayment);
-//            }
-//        });
+        btnManagePaymentInfo.setOnClickListener(view -> {
+            Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
+            Intent intentManageYouthPayment = new Intent(YouthShovellerProfile.this, Manage_Payment.class);
+            intentManageYouthPayment.putExtra("USER_ID", userId);
+            startActivity(intentManageYouthPayment);
+        });
 
-        // TODO: Need to implement Edit Password functionality
+        Button btnManageProfileInfo = findViewById(R.id.btnManageProfileInfo);
+        btnManageProfileInfo.setOnClickListener(view -> {
+            Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
+            Intent intentManageYouthProfile = new Intent(YouthShovellerProfile.this, EditProfileInfo.class);
+            intentManageYouthProfile.putExtra("USER_ID", userId);
+            startActivity(intentManageYouthProfile);
+        });
+
         Button btnEditPassword = findViewById(R.id.btnEditPassword);
-//        btnEditPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intentEditPassword = new Intent(YouthShovellerProfile.this, EditPassword.class);
-//                String youthId = user.getUserId();
-//                intentEditPassword.putExtra("USER_ID", youthId);
-//                startActivity(intentEditPassword);
-//            }
-//        });
+        btnEditPassword.setOnClickListener(view -> {
+            Intent intentEditPassword = new Intent(YouthShovellerProfile.this, EditPassword.class);
+            intentEditPassword.putExtra("USER_ID", userId);
+            startActivity(intentEditPassword);
+        });
     }
 
     private void retrieveYouthProfile(int userId, DatabaseReference ref){
@@ -123,8 +108,6 @@ public class YouthShovellerProfile extends AppCompatActivity {
                             TextView phoneTV = findViewById(R.id.tvPhone);
                             TextView birthdayTV = findViewById(R.id.tvBirthdate);
                             TextView addressTV = findViewById(R.id.tvAddress);
-
-
 
                             // display user profile info in TV profile box
                             usernameTV.setText(String.format("Username: %s", user.getUserName()));
