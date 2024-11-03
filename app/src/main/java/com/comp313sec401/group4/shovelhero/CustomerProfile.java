@@ -97,6 +97,17 @@ public class CustomerProfile extends AppCompatActivity {
                         //CUSTOMER BUTTONS
                         //*******
 
+                        //REQUEST SHOVELLING BUTTON
+                        btnOrderShoveling.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(CustomerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
+                                Intent intentCreateWorkOrder = new Intent(CustomerProfile.this, Create_work_order.class);
+                                int customerId = user.getUserId();
+                                intentCreateWorkOrder.putExtra("USER_ID", customerId);
+                                startActivity(intentCreateWorkOrder);
+                            }
+                        });
 
                         //EDIT PROFILE BUTTON
                         btnEditProfile.setOnClickListener(new View.OnClickListener() {
