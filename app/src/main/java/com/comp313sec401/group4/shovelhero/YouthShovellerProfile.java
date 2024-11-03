@@ -51,11 +51,8 @@ public class YouthShovellerProfile extends AppCompatActivity {
         rvPendingWorkOrders.setAdapter(adapter);
         fetchApprovedWorkOrdersFromFirebase();
 
-
-
-
         // Get user intent passed from login page
-        int userId = 0;
+        int userId;
         Intent intent = getIntent();
         if (intent != null) {
             Bundle extras = getIntent().getExtras();
@@ -65,59 +62,43 @@ public class YouthShovellerProfile extends AppCompatActivity {
                 if (userId != 0) {
                     retrieveYouthProfile(userId, userTable);
                 }
+            } else {
+                userId = 0;
             }
         } else {
             userId = 0;
         }
 
-        // TODO: add ManageProfile Functionality
-        Button btnManageProfileInfo = findViewById(R.id.btnManageProfileInfo);
-//        btnManageProfileInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
-//                Intent intentManageYouthProfile = new Intent(YouthShovellerProfile.this, EditProfileInfo.class);
-//                String youthId = user.getUserId();
-//                intentManageYouthProfile.putExtra("USER_ID", youthId);
-//                startActivity(intentManageYouthProfile);
-//            }
-//        });
-
         Button btnViewJobs = findViewById(R.id.btnViewJobs);
-        int finalUserId = userId;
         btnViewJobs.setOnClickListener(view -> {
             Intent intentViewYouthJobs = new Intent(YouthShovellerProfile.this, ListAllWorkOrders.class);
-            intentViewYouthJobs.putExtra("user_id", finalUserId);
+            intentViewYouthJobs.putExtra("user_id", userId);
             startActivity(intentViewYouthJobs);
         });
 
-        // TODO: Need to implement managementPayment Info Button
         Button btnManagePaymentInfo = findViewById(R.id.btnManagePaymentInfo);
-//        btnManagePaymentInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
-//
-//                Intent intentManageYouthPayment = new Intent(YouthShovellerProfile.this, Manage_Payment.class);
-//                String youthId = user.getUserId();
-//                intentManageYouthPayment.putExtra("USER_ID", youthId);
-//                startActivity(intentManageYouthPayment);
-//            }
-//        });
+        btnManagePaymentInfo.setOnClickListener(view -> {
+            Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
+            Intent intentManageYouthPayment = new Intent(YouthShovellerProfile.this, Manage_Payment.class);
+            intentManageYouthPayment.putExtra("USER_ID", userId);
+            startActivity(intentManageYouthPayment);
+        });
 
-        // TODO: Need to implement Edit Password functionality
+        Button btnManageProfileInfo = findViewById(R.id.btnManageProfileInfo);
+        btnManageProfileInfo.setOnClickListener(view -> {
+            Toast.makeText(YouthShovellerProfile.this, "Temp msg: Manage Youth activity under construction", Toast.LENGTH_SHORT).show();
+            Intent intentManageYouthProfile = new Intent(YouthShovellerProfile.this, EditProfileInfo.class);
+            intentManageYouthProfile.putExtra("USER_ID", userId);
+            startActivity(intentManageYouthProfile);
+        });
+
         Button btnEditPassword = findViewById(R.id.btnEditPassword);
-//        btnEditPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intentEditPassword = new Intent(YouthShovellerProfile.this, EditPassword.class);
-//                String youthId = user.getUserId();
-//                intentEditPassword.putExtra("USER_ID", youthId);
-//                startActivity(intentEditPassword);
-//            }
-//        });
+        btnEditPassword.setOnClickListener(view -> {
+            Intent intentEditPassword = new Intent(YouthShovellerProfile.this, EditPassword.class);
+            intentEditPassword.putExtra("USER_ID", userId);
+            startActivity(intentEditPassword);
+        });
     }
-
 
     // to fetch approved workorder from firebase
     private void fetchApprovedWorkOrdersFromFirebase() {
@@ -125,6 +106,7 @@ public class YouthShovellerProfile extends AppCompatActivity {
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("workOrders");
 
             databaseReference.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     approvedWorkOrderList.clear();
@@ -136,23 +118,6 @@ public class YouthShovellerProfile extends AppCompatActivity {
                     }
                     adapter.notifyDataSetChanged();
                 }
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @SuppressLint("NotifyDataSetChanged")
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                approvedWorkOrderList.clear();
-//
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//
-//                    WorkOrder workOrder = dataSnapshot.getValue(WorkOrder.class);
-//                    if(workOrder != null && workOrder.getStatus().equals("approved")) {
-//                        approvedWorkOrderList.add(workOrder);
-//                    }
-//                }
-//
-//                adapter.notifyDataSetChanged();
-             //   rvPendingWorkOrders.setAdapter(adapter);
-
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {

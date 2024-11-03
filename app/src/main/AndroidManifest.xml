@@ -28,18 +28,28 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/navmenu" />
-
+        <activity
+            android:name=".ui.theme.ViewApprovedWorkOrderActivity"
+            android:exported="false" />
         <activity
             android:name=".CustomerProfile"
-            android:theme="@style/Theme.AppCompat.Light"
             android:exported="true" />
+        <activity
+            android:name=".ListAllWorkOrders"
+            android:exported="false" />
+        <activity
+            android:name=".ViewRequestedWorkOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AcceptOpenWorkActivity"
+            android:exported="false" />
         <activity
             android:name=".User_registration"
             android:exported="false" />
         <activity
             android:name=".YouthShovellerProfile"
-            android:theme="@style/Theme.AppCompat.Light"
             android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -51,9 +61,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".User_registration"
-            android:exported="false" />
         <activity
             android:name=".Create_work_order"
             android:exported="false" />
