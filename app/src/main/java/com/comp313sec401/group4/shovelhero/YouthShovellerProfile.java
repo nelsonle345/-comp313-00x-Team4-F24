@@ -34,7 +34,7 @@ public class YouthShovellerProfile extends AppCompatActivity {
         Button btnViewRatings = findViewById(R.id.btnViewRatings);
 
         RecyclerView rvPendingWorkOrders = findViewById(R.id.rvPendingWorkOrders);
-        userTable = FirebaseDatabase.getInstance().getReference("guardian_approval_request");
+        DatabaseReference guardianApprovalRequest = FirebaseDatabase.getInstance().getReference("guardian_approval_request");
 
         // Get user intent passed from login page
         int userId;
