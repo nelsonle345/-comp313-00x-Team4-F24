@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.comp313sec401.group4.shovelhero"
-        minSdk = 24
+        minSdk = 26
         //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1

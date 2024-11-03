@@ -34,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this::loginUser);
+
+        Button btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, User_registration.class);
+            startActivity(intent);
+        });
     }
     public void loginUser(View view) {
         String username = ((EditText) findViewById(R.id.etUsername)).getText().toString();
@@ -87,9 +93,5 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-    public void createNewUser(View view){
-        Intent intent = new Intent(MainActivity.this, User_registration.class);
-        startActivity(intent);
     }
 }

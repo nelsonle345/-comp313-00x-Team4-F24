@@ -43,6 +43,9 @@
             android:name=".CustomerProfile"
             android:exported="false" />
         <activity
+            android:name=".User_registration"
+            android:exported="false" />
+        <activity
             android:name=".YouthShovellerProfile"
             android:exported="false" />
         <activity
