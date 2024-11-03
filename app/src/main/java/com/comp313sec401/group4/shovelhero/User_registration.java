@@ -94,7 +94,7 @@ public class User_registration extends AppCompatActivity {
      */
     private int calculateAge(String birthday) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
         LocalDate birthDate = LocalDate.parse(birthday, formatter);
         LocalDate currDate = LocalDate.now();
 
