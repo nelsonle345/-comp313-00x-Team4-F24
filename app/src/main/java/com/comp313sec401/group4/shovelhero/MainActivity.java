@@ -69,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                                                 startActivity(intent);
                                                 break;
                                             }
+                                            case "Customer": {
+                                                Intent intent = new Intent(MainActivity.this, CustomerProfile.class);
+                                                intent.putExtra("user_id", user.getUserId());
+                                                startActivity(intent);
+                                                break;
+                                            }
                                             case "Adult Shoveler": {
                                                 Intent intent = new Intent(MainActivity.this, AdultShovellerProfile.class);
                                                 intent.putExtra("user_id", user.getUserId());
