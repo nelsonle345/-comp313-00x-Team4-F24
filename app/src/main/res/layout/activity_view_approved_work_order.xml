@@ -1,33 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".ui.theme.ViewApprovedWorkOrderActivity">
+    android:padding="16dp">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:contentDescription="Shovel Hero Logo"
+            android:src="@drawable/logo_color"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/lblWorkOrderDetails"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="wrap_content"
+            android:text="Work Order Details"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <TextView
+            android:id="@+id/workOrderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Work Order ID: 12345"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
 
-    <include layout="@layout/content_view_approved_work_order" />
+        <TextView
+            android:id="@+id/workOrderDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description: Snow removal for driveway and walkway."
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <TextView
+            android:id="@+id/workOrderLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location: 123 Main Street, Toronto"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/workOrderPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Priority: Urgent"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Additional Comments (optional)"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:minLines="3"
+            android:maxLines="6"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/approveButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Accept"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#4CAF50"/>
+
+            <Button
+                android:id="@+id/declineButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Decline"
+                android:backgroundTint="#F44336"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
