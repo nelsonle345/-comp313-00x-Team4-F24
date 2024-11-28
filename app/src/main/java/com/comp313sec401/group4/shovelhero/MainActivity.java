@@ -84,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                         Log.d("Debugging", "This is the logged-in user: " + user.getEmail());
                                     } else {
-                                        Log.d("Debugging", "Password mismatch.");
+                                        Toast.makeText(MainActivity.this, "Password mismatch", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
                                     Log.d("Debugging", "User Object is null");
                                 }
                             }
                         } else {
-                            Toast.makeText(MainActivity.this, "User not found. Please try again or create a new account.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Please enter a valid username and password", Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override

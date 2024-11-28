@@ -57,7 +57,7 @@ public class AddPropertyActivity extends AppCompatActivity {
         }
 
         //Instantiate userTable
-        userTable = FirebaseDatabase.getInstance().getReference("users").child(currentUserId);
+        userTable = FirebaseDatabase.getInstance().getReference("users");
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

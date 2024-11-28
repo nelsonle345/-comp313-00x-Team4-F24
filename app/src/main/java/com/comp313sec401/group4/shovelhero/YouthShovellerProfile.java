@@ -71,7 +71,7 @@ public class YouthShovellerProfile extends AppCompatActivity {
 
         Button btnViewJobs = findViewById(R.id.btnViewJobs);
         btnViewJobs.setOnClickListener(view -> {
-            Intent intentViewYouthJobs = new Intent(YouthShovellerProfile.this, ListAllWorkOrders.class);
+            Intent intentViewYouthJobs = new Intent(YouthShovellerProfile.this, ListOpenWorkOrder.class);
             intentViewYouthJobs.putExtra("user_id", userId);
             startActivity(intentViewYouthJobs);
         });

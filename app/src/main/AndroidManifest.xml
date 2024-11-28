@@ -62,9 +62,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Manage_Payment"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileInfo"
+            android:exported="false" />
+        <activity
             android:name=".Create_work_order"
             android:exported="false" />
-
+        <activity
+            android:name=".EditPassword"
+            android:exported="false" />
+        <activity
+            android:name=".AddPropertyActivity"
+            android:exported="false" />
     </application>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
