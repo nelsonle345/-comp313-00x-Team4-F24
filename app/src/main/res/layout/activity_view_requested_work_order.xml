@@ -41,7 +41,7 @@
             android:id="@+id/requestedWorkOrderDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description: Lawn mowing and leaf removal."
+            android:text="Description: Snow shoveling services."
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 
@@ -125,8 +125,29 @@
             android:id="@+id/requestDetailsContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Service requested for the front and backyard. Please ensure to bag the leaves after mowing."
+            android:text="Service requested for the front driveway."
             android:textSize="14sp"
             android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/clientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Client Name:"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/clientContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Client Contact:"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/contactClientButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Client"
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 </ScrollView>
