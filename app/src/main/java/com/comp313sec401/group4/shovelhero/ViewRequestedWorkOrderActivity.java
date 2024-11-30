@@ -51,13 +51,13 @@ public class ViewRequestedWorkOrderActivity extends AppCompatActivity {
 
             // Populate UI with WorkOrder details
             requestWorkId.setText("Work Order ID: " + order.getWorkOrderId());
-            requestInstructions.setText("Instructions: " + order.getDescription());
-            requestLocation.setText("Location: " + order.getLocation());
-            requestUrgency.setText("Urgency: " + order.getPriority());
+            requestInstructions.setText("Instructions: " + order.getInstructions());
+            requestLocation.setText("Location: " + order.getUserAddress());
+            requestUrgency.setText("Urgency: " + order.getUrgency());
             requestStatus.setText("Status: " + order.getStatus());
 
             // Fetch client information
-            fetchClientInfo(order.getClientId());
+            fetchClientInfo(order.getRequestUser());
         } else {
             Toast.makeText(this, "No work order details available!", Toast.LENGTH_SHORT).show();
             return;
