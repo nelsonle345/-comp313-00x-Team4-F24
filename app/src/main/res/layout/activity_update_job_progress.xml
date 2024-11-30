@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:contentDescription="Shovel Hero Logo"
+            android:src="@drawable/logo_color"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Work Order Details"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/jobProgressId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Work Order ID: 12345"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/jobProgressDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description: Snow removal for driveway and walkway."
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/jobProgressLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location: 123 Main Street, Toronto"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/jobProgressUrgency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Priority: Urgent"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update job progress bar:"
+            tools:ignore="HardcodedText"/>
+
+        <SeekBar
+            android:id="@+id/seekbarUpdateJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"/>
+
+        <EditText
+            android:id="@+id/jobProgressComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Job detail report"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:minLines="3"
+            android:maxLines="6"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/jobProgressUpdateButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Update"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#FFEE8C"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -34,16 +34,15 @@ public class WorkOrder implements Parcelable {
     private int userId;
     private String userAddress;
 
-    // private CalendarView requestDatePicker;
-    // private List<String> itemsRequested;
-    // private Image completedImage;
-    // private Image issueImage;
+    private int jobProgress;
+
+    private String jobDetails;
 
     public WorkOrder() {}
 
     // constructor
     public WorkOrder(int workorderid, String area, String instructions, double price, String requestDate, String requestUser,
-                     String specificdate, int squareFootage, String status, String urgency,  int userId, String userAddress) {
+                     String specificdate, int squareFootage, String status, String urgency,  int userId, String userAddress, int jobProgress, String jobDetails) {
         this.workorderid = workorderid;
         this.area = area;
         this.instructions = instructions;
@@ -56,6 +55,8 @@ public class WorkOrder implements Parcelable {
         this.urgency = urgency;
         this.userId = userId;
         this.userAddress = userAddress;
+        this.jobProgress = jobProgress;
+        this.jobDetails = jobDetails;
     }
 
     protected WorkOrder(Parcel in) {
@@ -71,6 +72,8 @@ public class WorkOrder implements Parcelable {
         this.urgency = in.readString();
         this.userId = in.readInt();
         this.userAddress = in.readString();
+        this.jobProgress = in.readInt();
+        this.jobDetails = in.readString();
     }
 
     @PropertyName("workorderId")
@@ -131,6 +134,17 @@ public class WorkOrder implements Parcelable {
     @PropertyName("address")
     public void setUserAddress(String userAddress) { this.userAddress = userAddress; }
 
+    @PropertyName("jobprogress")
+    public int getJobProgress() { return jobProgress; }
+
+    @PropertyName("jobprogress")
+    public void setJobProgress(int jobProgress) { this.jobProgress = jobProgress; }
+
+    @PropertyName("jobdetails")
+    public String getJobDetails() { return jobDetails; }
+    @PropertyName("jobdetails")
+    public void setJobDetails(String jobDetails) { this.jobDetails = jobDetails; }
+
     @Override
     public int describeContents() {
         return 0;
@@ -150,6 +164,8 @@ public class WorkOrder implements Parcelable {
         parcel.writeString(urgency);
         parcel.writeInt(userId);
         parcel.writeString(userAddress);
+        parcel.writeInt(jobProgress);
+        parcel.writeString(jobDetails);
     }
 
     public static final Creator<WorkOrder> CREATOR = new Creator<WorkOrder>() {

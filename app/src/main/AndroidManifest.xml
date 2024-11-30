@@ -76,6 +76,12 @@
         <activity
             android:name=".AddPropertyActivity"
             android:exported="false" />
+        <activity
+            android:name=".AdultShovellerProfile"
+            android:exported="false"/>
+        <activity
+            android:name=".UpdateJobProgressActivity"
+            android:exported="false"/>
     </application>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
