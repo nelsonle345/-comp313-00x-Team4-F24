@@ -10,7 +10,11 @@ android {
 
     defaultConfig {
         applicationId = "com.comp313sec401.group4.shovelhero"
+<<<<<<< Updated upstream
         minSdk = 24
+=======
+        minSdk = 26
+>>>>>>> Stashed changes
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -31,7 +35,10 @@ android {
         }
     }
 
+<<<<<<< Updated upstream
     // Set Java compatibility to Java 11
+=======
+>>>>>>> Stashed changes
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
