@@ -1,0 +1,76 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#f0f0f0">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_color"
+        android:contentDescription="Shovel Hero Logo"
+        android:layout_marginBottom="16dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to ShovelHero!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnAdultShoveler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I'm an Adult Shoveler"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:contentDescription="Adult Shoveler Button"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnGuardian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I'm a Guardian"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:backgroundTint="#03DAC5"
+        android:textColor="#FFFFFF"
+        android:contentDescription="Guardian Button"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnYouthShoveler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I'm a Youth Shoveler"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
+        android:contentDescription="Youth Shoveler Button"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
