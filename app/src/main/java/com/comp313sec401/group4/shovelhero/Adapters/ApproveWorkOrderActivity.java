@@ -1,28 +1,34 @@
-package com.comp313sec401.group4.shovelhero;
+package com.comp313sec401.group4.shovelhero.Adapters;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
+import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
+//import com.comp313sec401.group4.shovelhero.databinding.ActivityViewApprovedWorkOrderBinding;
+import com.comp313sec401.group4.shovelhero.R;
 
-public class AcceptOpenWorkActivity extends AppCompatActivity {
+public class ApproveWorkOrderActivity extends AppCompatActivity {
+
 
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accept_open_work);
+        setContentView(R.layout.activity_view_approved_work_order); // Update layout file for approved orders
 
         WorkOrder order = (WorkOrder) getIntent().getParcelableExtra("order");
         if(order != null) {
-            Log.d("Debugging", "Order: " + order.getWorkOrderId());
+            Log.d("Debugging", "Approved Order: " + order.getWorkOrderId());
 
             TextView txtWorkId = findViewById(R.id.workOrderId);
             TextView txtInstructions = findViewById(R.id.workOrderDescription);
@@ -37,23 +43,15 @@ public class AcceptOpenWorkActivity extends AppCompatActivity {
 
         EditText commentsEditText = findViewById(R.id.etComments);
 
-        Button acceptButton = findViewById(R.id.acceptButton);
-        acceptButton.setOnClickListener(new View.OnClickListener() {
+        Button approveButton = findViewById(R.id.approveButton);
+        approveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: This should create a new guardian_approval_request with youthId, guardianId (of youth), propertyId, workorderId.
-                // This should be sent to guardian_approval_request table in Firebase.
                 String comments = commentsEditText.getText().toString().trim();
-                Toast.makeText(AcceptOpenWorkActivity.this, "Work Order Accepted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ApproveWorkOrderActivity.this, "Work Order Approved", Toast.LENGTH_SHORT).show();
             }
         });
 
-        Button declineButton = findViewById(R.id.declineButton);
-        declineButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(AcceptOpenWorkActivity.this, "Work Order Declined", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 }

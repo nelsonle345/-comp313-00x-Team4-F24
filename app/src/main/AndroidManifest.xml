@@ -38,7 +38,7 @@
 
         <!-- Profile Activities -->
         <activity android:name=".AdultShovellerProfile" android:exported="true" />
-        <activity android:name=".GuardianProfile" android:exported="true" />
+        <activity android:name=".GuardianProfile" android:exported="true" android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".YouthShovellerProfile" android:exported="true" />
 
         <!-- Other Activities -->

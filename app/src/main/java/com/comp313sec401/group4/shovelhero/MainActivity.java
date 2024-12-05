@@ -34,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this::loginUser);
+
+        Button btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, User_registration.class);
+            startActivity(intent);
+        });
     }
     public void loginUser(View view) {
         String username = ((EditText) findViewById(R.id.etUsername)).getText().toString();
@@ -63,8 +69,14 @@ public class MainActivity extends AppCompatActivity {
                                                 startActivity(intent);
                                                 break;
                                             }
+                                            case "Customer": {
+                                                Intent intent = new Intent(MainActivity.this, CustomerProfile.class);
+                                                intent.putExtra("user_id", user.getUserId());
+                                                startActivity(intent);
+                                                break;
+                                            }
                                             case "Adult Shoveler": {
-                                                Intent intent = new Intent(MainActivity.this, AdultShovellerProfile.class);
+                                                Intent intent = new Intent(MainActivity.this, AdultShovellerProfileActivity.class);
                                                 intent.putExtra("user_id", user.getUserId());
                                                 startActivity(intent);
                                                 break;
@@ -72,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                         Log.d("Debugging", "This is the logged-in user: " + user.getEmail());
                                     } else {
-                                        Log.d("Debugging", "Password mismatch.");
+                                        Toast.makeText(MainActivity.this, "Password mismatch", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
                                     Log.d("Debugging", "User Object is null");
                                 }
                             }
                         } else {
-                            Toast.makeText(MainActivity.this, "User not found. Please try again or create a new account.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Please enter a valid username and password", Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
@@ -87,9 +99,5 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-    public void createNewUser(View view){
-        Intent intent = new Intent(MainActivity.this, User_registration.class);
-        startActivity(intent);
     }
 }
