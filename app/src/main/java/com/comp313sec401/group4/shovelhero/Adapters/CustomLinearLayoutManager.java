@@ -1,4 +1,4 @@
-package com.comp313sec401.group4.shovelhero;
+package com.comp313sec401.group4.shovelhero.Adapters;
 
 import android.content.Context;
 import android.util.Log;

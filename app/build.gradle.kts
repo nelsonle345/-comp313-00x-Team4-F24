@@ -10,9 +10,11 @@ android {
 
     defaultConfig {
         applicationId = "com.comp313sec401.group4.shovelhero"
+
         minSdk = 24
-        //noinspection OldTargetApi
-        targetSdk = 33
+
+        targetSdk = 34
+
         versionCode = 1
         versionName = "1.0"
 
@@ -31,6 +33,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

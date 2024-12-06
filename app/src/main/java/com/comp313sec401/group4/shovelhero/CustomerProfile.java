@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -180,18 +179,6 @@ public class CustomerProfile extends AppCompatActivity {
                             }
                         });
 
-
-                        //temp
-
-//                        View btnView = findViewById(R.id.temp);
-//                        btnView.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                startActivity(new Intent(CustomerProfile.this, tempActivity.class));
-//                               // finish();
-//                            }
-//                        });
-
                         //EDIT PASSWORD BUTTON
                         btnEditPassword.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -227,15 +214,5 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
     }
-    public void nextActivity(View v){
-//        if (user != null) {
-//            int customerId = user.getUserId();
-//            Intent intentAddAddress = new Intent(this, tempActivity.class);
-//            intentAddAddress.putExtra("USER_ID", customerId);
-//            startActivity(intentAddAddress);
-//        } else {
-//            Log.e("CustomerProfile", "User object is null.");
-//        }
-        startActivity(new Intent(CustomerProfile.this, tempActivity.class));
-    }
+
 }

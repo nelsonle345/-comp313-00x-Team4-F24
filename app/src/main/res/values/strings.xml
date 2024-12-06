@@ -9,10 +9,10 @@
     <string name="property_address">Property Address</string>
     <string name="special_instructions_optional">Special Instructions (Optional)</string>
     <string-array name="account_types">
-        <item>Youth Shoveller</item>
+        <item>Youth Shoveler</item>
         <item>Customer</item>
         <item>Guardian</item>
-        <item>Adult Shoveller</item>
+        <item>Adult Shoveler</item>
         <item>Fundraiser</item>
     </string-array>
 
