@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".tempActivity">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerView"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
