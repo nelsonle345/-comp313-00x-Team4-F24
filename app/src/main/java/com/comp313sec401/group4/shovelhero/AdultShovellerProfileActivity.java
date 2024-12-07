@@ -4,17 +4,21 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.comp313sec401.group4.shovelhero.Adapters.ListAllProfileWorkOrderAdapters;
-import com.comp313sec401.group4.shovelhero.Adapters.ListAllWorkOrdersAdapter;
 import com.comp313sec401.group4.shovelhero.Adapters.ListApprovedWorkOrdersAdapter;
 import com.comp313sec401.group4.shovelhero.Models.User;
 import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
@@ -27,18 +31,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdultShovellerProfile extends AppCompatActivity {
+public class AdultShovellerProfileActivity extends AppCompatActivity {
+
     private ListAllProfileWorkOrderAdapters adapter;
-    private List<WorkOrder> workOrderList = new ArrayList<>();
+    private final List<WorkOrder> workOrderList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adult_profile);
+        setContentView(R.layout.activity_adult_shoveller_profile);
 
         DatabaseReference userTable = FirebaseDatabase.getInstance().getReference("users");
-
-        Button btnViewRatings = findViewById(R.id.btnViewRatings);
 
         RecyclerView rvPendingWorkOrders = findViewById(R.id.rvPendingWorkOrders);
         rvPendingWorkOrders.setLayoutManager(new LinearLayoutManager(this));
@@ -51,12 +54,13 @@ public class AdultShovellerProfile extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 userId = extras.getInt("user_id");
-                Log.d("Debugging", "this is passed Id: " + userId);
+                // Log.d("Debugging", "this is passed Id: " + userId);
                 if (userId != 0) {
-                    retrieveYouthProfile(userId, userTable);
+                    retrieveAdultProfile(userId, userTable);
                     fetchApprovedWorkOrdersFromFirebase(userId);
 
                     rvPendingWorkOrders.setAdapter(adapter);
+                    Log.d("Debugging", "Set Adapter: ");
                 }
             } else {
                 userId = 0;
@@ -67,30 +71,30 @@ public class AdultShovellerProfile extends AppCompatActivity {
 
         Button btnViewJobs = findViewById(R.id.btnViewJobs);
         btnViewJobs.setOnClickListener(view -> {
-            Intent intentViewYouthJobs = new Intent(AdultShovellerProfile.this, ListOpenWorkOrder.class);
-            intentViewYouthJobs.putExtra("user_id", userId);
+            Intent intentViewYouthJobs = new Intent(AdultShovellerProfileActivity.this, ListOpenWorkOrder.class);
+            intentViewYouthJobs.putExtra("USER_ID", userId);
             startActivity(intentViewYouthJobs);
         });
 
         Button btnManagePaymentInfo = findViewById(R.id.btnManagePaymentInfo);
         btnManagePaymentInfo.setOnClickListener(view -> {
-            Toast.makeText(AdultShovellerProfile.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
-            Intent intentManageYouthPayment = new Intent(AdultShovellerProfile.this, Manage_Payment.class);
+            Toast.makeText(AdultShovellerProfileActivity.this, "Temp msg: Manage Payment activity under construction", Toast.LENGTH_SHORT).show();
+            Intent intentManageYouthPayment = new Intent(AdultShovellerProfileActivity.this, Manage_Payment.class);
             intentManageYouthPayment.putExtra("USER_ID", userId);
             startActivity(intentManageYouthPayment);
         });
 
         Button btnManageProfileInfo = findViewById(R.id.btnManageProfileInfo);
         btnManageProfileInfo.setOnClickListener(view -> {
-            Toast.makeText(AdultShovellerProfile.this, "Temp msg: Manage Adult activity under construction", Toast.LENGTH_SHORT).show();
-            Intent intentManageYouthProfile = new Intent(AdultShovellerProfile.this, EditProfileInfo.class);
+            Toast.makeText(AdultShovellerProfileActivity.this, "Temp msg: Manage Adult activity under construction", Toast.LENGTH_SHORT).show();
+            Intent intentManageYouthProfile = new Intent(AdultShovellerProfileActivity.this, EditProfileInfo.class);
             intentManageYouthProfile.putExtra("USER_ID", userId);
             startActivity(intentManageYouthProfile);
         });
 
         Button btnEditPassword = findViewById(R.id.btnEditPassword);
         btnEditPassword.setOnClickListener(view -> {
-            Intent intentEditPassword = new Intent(AdultShovellerProfile.this, EditPassword.class);
+            Intent intentEditPassword = new Intent(AdultShovellerProfileActivity.this, EditPassword.class);
             intentEditPassword.putExtra("USER_ID", userId);
             startActivity(intentEditPassword);
         });
@@ -109,25 +113,25 @@ public class AdultShovellerProfile extends AppCompatActivity {
                 Log.d("Debugging", "Looking for work Orders - " + snapshot);
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     WorkOrder order = dataSnapshot.getValue(WorkOrder.class);
+                    // Log.d("Debugging", "Found Work Orders" + user_id + ", " + order.getUserId());
                     if (order != null && order.getUserId() == user_id) {
-
                         workOrderList.add(order);
-                        // Log.d("Debugging", "Found Work Orders" + approvedWorkOrderList);
                     }
                 }
+
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("FirebaseError", "Failed to read approved work orders", error.toException());
-                Toast.makeText(AdultShovellerProfile.this, "Failed to load data.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdultShovellerProfileActivity.this, "Failed to load data.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
 
-    private void retrieveYouthProfile(int userId, DatabaseReference ref){
+    private void retrieveAdultProfile(int userId, DatabaseReference ref){
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -174,5 +178,10 @@ public class AdultShovellerProfile extends AppCompatActivity {
                 //handle error
             }
         });
+    }
+
+    public void nextActivity(View view) {
+        Intent intent = new Intent(this, OpenOrderActivity_ar.class);
+        startActivity(intent);
     }
 }

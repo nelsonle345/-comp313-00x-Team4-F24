@@ -82,7 +82,7 @@ public class UpdateJobProgressActivity extends AppCompatActivity {
                             userReference.child("jobprogress").setValue(jobProgress);
                             userReference.child("jobdetails").setValue(jobDetails.getText().toString());
 
-                            Intent intent = new Intent(UpdateJobProgressActivity.this, AdultShovellerProfile.class);
+                            Intent intent = new Intent(UpdateJobProgressActivity.this, AdultShovellerProfileActivity.class);
                             intent.putExtra("user_id", orderPassed.getUserId());
                             startActivity(intent);
                         }

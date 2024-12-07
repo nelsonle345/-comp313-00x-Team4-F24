@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -58,6 +59,11 @@ public class GuardianProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guardian_profile);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        String selectedRole = sharedPreferences.getString("selected_role", "No Role Selected");
+        String userId = sharedPreferences.getString("user_id", null);
+
 
         userTable = FirebaseDatabase.getInstance().getReference("users");
 

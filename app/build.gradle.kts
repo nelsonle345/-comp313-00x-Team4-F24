@@ -10,9 +10,11 @@ android {
 
     defaultConfig {
         applicationId = "com.comp313sec401.group4.shovelhero"
-        minSdk = 26
-        //noinspection OldTargetApi
-        targetSdk = 33
+
+        minSdk = 24
+
+        targetSdk = 34
+
         versionCode = 1
         versionName = "1.0"
 
@@ -31,6 +33,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -68,6 +71,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.8.3")
     implementation("androidx.navigation:navigation-ui:2.8.3")
     implementation("com.google.firebase:firebase-database:21.0.0")
+    implementation("androidx.activity:activity:1.9.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
