@@ -91,6 +91,9 @@
             android:name=".OpenOrderActivity_ar"
             android:exported="false" />
         <activity
+            android:name=".UpdateJobProgressActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerProfile"
             android:exported="false" /> <!-- Firebase Metadata -->
         <meta-data

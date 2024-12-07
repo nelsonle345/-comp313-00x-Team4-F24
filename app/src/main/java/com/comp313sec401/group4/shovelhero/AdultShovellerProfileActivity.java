@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.comp313sec401.group4.shovelhero.Adapters.ListAllProfileWorkOrderAdapters;
 import com.comp313sec401.group4.shovelhero.Adapters.ListApprovedWorkOrdersAdapter;
 import com.comp313sec401.group4.shovelhero.Models.User;
 import com.comp313sec401.group4.shovelhero.Models.WorkOrder;
@@ -32,8 +33,8 @@ import java.util.List;
 
 public class AdultShovellerProfileActivity extends AppCompatActivity {
 
-    private ListApprovedWorkOrdersAdapter adapter;
-    private List<WorkOrder> approvedWorkOrderList;
+    private ListAllProfileWorkOrderAdapters adapter;
+    private final List<WorkOrder> workOrderList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,7 @@ public class AdultShovellerProfileActivity extends AppCompatActivity {
 
         RecyclerView rvPendingWorkOrders = findViewById(R.id.rvPendingWorkOrders);
         rvPendingWorkOrders.setLayoutManager(new LinearLayoutManager(this));
-        approvedWorkOrderList = new ArrayList<>();
-        adapter = new ListApprovedWorkOrdersAdapter(this, approvedWorkOrderList);
-
-        rvPendingWorkOrders.setAdapter(adapter);
-        fetchApprovedWorkOrdersFromFirebase();
+        adapter = new ListAllProfileWorkOrderAdapters(this, workOrderList);
 
         // Get user intent passed from login page
         int userId;
@@ -57,9 +54,13 @@ public class AdultShovellerProfileActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 userId = extras.getInt("user_id");
-                Log.d("Debugging", "this is passed Id: " + userId);
+                // Log.d("Debugging", "this is passed Id: " + userId);
                 if (userId != 0) {
                     retrieveAdultProfile(userId, userTable);
+                    fetchApprovedWorkOrdersFromFirebase(userId);
+
+                    rvPendingWorkOrders.setAdapter(adapter);
+                    Log.d("Debugging", "Set Adapter: ");
                 }
             } else {
                 userId = 0;
@@ -100,21 +101,24 @@ public class AdultShovellerProfileActivity extends AppCompatActivity {
     }
 
     // to fetch approved workorder from firebase
-    private void fetchApprovedWorkOrdersFromFirebase() {
+    private void fetchApprovedWorkOrdersFromFirebase(int user_id) {
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("workOrders");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("workorder");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                approvedWorkOrderList.clear();
+                workOrderList.clear();
+                Log.d("Debugging", "Looking for work Orders - " + snapshot);
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     WorkOrder order = dataSnapshot.getValue(WorkOrder.class);
-                    if (order != null && "approved".equalsIgnoreCase(order.getStatus())) {
-                        approvedWorkOrderList.add(order);
+                    // Log.d("Debugging", "Found Work Orders" + user_id + ", " + order.getUserId());
+                    if (order != null && order.getUserId() == user_id) {
+                        workOrderList.add(order);
                     }
                 }
+
                 adapter.notifyDataSetChanged();
             }
 
