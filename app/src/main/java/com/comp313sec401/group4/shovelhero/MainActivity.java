@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                                 break;
                                             }
                                             case "Adult Shoveler": {
-                                                Intent intent = new Intent(MainActivity.this, AdultShovellerProfile.class);
+                                                Intent intent = new Intent(MainActivity.this, AdultShovellerProfileActivity.class);
                                                 intent.putExtra("user_id", user.getUserId());
                                                 startActivity(intent);
                                                 break;

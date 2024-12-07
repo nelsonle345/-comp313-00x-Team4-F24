@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,75 +16,11 @@
         android:theme="@style/Theme.ShovelHero"
         tools:targetApi="31">
         <activity
-            android:name=".GuardianProfile"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:exported="true" />
-
-        <activity android:name=".ListOpenWorkOrder"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/navmenu" />
-        <activity
-            android:name=".ui.theme.ViewApprovedWorkOrderActivity"
+            android:name=".ViewCustomerProfileActivity"
             android:exported="false" />
+        <!-- Landing Page Activity -->
         <activity
-            android:name=".CustomerProfile"
-            android:exported="true" />
-        <activity
-            android:name=".ListAllWorkOrders"
-            android:exported="false" />
-        <activity
-            android:name=".Create_work_order"
-            android:exported="false" />
-        <activity
-            android:name=".AdultShovellerProfile"
-            android:exported="false" />
-        <activity
-            android:name=".CreateUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditPassword"
-            android:exported="false" />
-        <activity
-            android:name=".EditProfileInfo"
-            android:exported="false" />
-        <activity
-            android:name=".SelectWorkOrderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddPropertyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".YouthShovellerProfile"
-            android:exported="false" />
-        <activity
-            android:name=".UpdatePropertyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ViewRequestedWorkOrderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Manage_Payment"
-            android:exported="false" />
-        <activity
-            android:name=".RequestGuardianApprovalActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AcceptOpenWorkActivity"
-            android:exported="false" />
-        <activity
-            android:name=".User_registration"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
+            android:name=".LandingPageActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ShovelHero">
@@ -90,9 +29,70 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-    </application>
+        </activity> <!-- Login Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="Login"
+            android:theme="@style/Theme.ShovelHero" /> <!-- Profile Activities -->
+        <activity
+            android:name=".AdultShovellerProfile"
+            android:exported="true" />
+        <activity
+            android:name=".GuardianProfile"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".YouthShovellerProfile"
+            android:exported="true" /> <!-- Other Activities -->
+        <activity
+            android:name=".ListOpenWorkOrder"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ListAllWorkOrders"
+            android:exported="false" />
+        <activity
+            android:name=".ViewRequestedWorkOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AcceptOpenWorkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".User_registration"
+            android:exported="false" />
+        <activity
+            android:name=".Manage_Payment"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileInfo"
+            android:exported="false" />
+        <activity
+            android:name=".Create_work_order"
+            android:exported="false" />
+        <activity
+            android:name=".EditPassword"
+            android:exported="false" />
+        <activity
+            android:name=".AddPropertyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.theme.ViewApprovedWorkOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerProfile"
+            android:exported="false" /> <!-- Firebase Metadata -->
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/navmenu" />
+    </application>
 
 </manifest>

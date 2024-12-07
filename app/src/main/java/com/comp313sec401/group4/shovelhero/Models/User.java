@@ -3,7 +3,7 @@ import android.media.Image;
 
 import com.google.firebase.database.PropertyName;
 
-public class User {
+public class User  {
 
     private int userId;
     private String username;

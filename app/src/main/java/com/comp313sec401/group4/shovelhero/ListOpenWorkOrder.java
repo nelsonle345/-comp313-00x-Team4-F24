@@ -131,7 +131,8 @@ public class ListOpenWorkOrder extends AppCompatActivity {
         Collections.sort(workOrderList, (o1, o2) -> {
             int value1 = getUrgencyValue(o1.getUrgency());
             int value2 = getUrgencyValue(o2.getUrgency());
-            return Integer.compare(value2, value1); // Descending order
+            System.out.println("Sorting: " + value1 + " vs " + value2);
+            return Integer.compare(value2, value1);
         });
 
         workOrderAdapter.notifyDataSetChanged();
