@@ -39,6 +39,9 @@
             android:name=".AdultShovellerProfileActivity"
             android:exported="true" />
         <activity
+            android:name=".ViewInvoiceActivity"
+            android:exported="true" />
+        <activity
             android:name=".GuardianProfile"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light" />

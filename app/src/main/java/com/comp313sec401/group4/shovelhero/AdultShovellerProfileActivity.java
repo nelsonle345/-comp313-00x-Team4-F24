@@ -98,6 +98,13 @@ public class AdultShovellerProfileActivity extends AppCompatActivity {
             intentEditPassword.putExtra("USER_ID", userId);
             startActivity(intentEditPassword);
         });
+
+        Button btnInvoice = findViewById(R.id.btnViewInvoice);
+        btnInvoice.setOnClickListener(view -> {
+            Intent intentEditPassword = new Intent(AdultShovellerProfileActivity.this, ViewInvoiceActivity.class);
+            intentEditPassword.putExtra("USER_ID", userId);
+            startActivity(intentEditPassword);
+        });
     }
 
     // to fetch approved workorder from firebase

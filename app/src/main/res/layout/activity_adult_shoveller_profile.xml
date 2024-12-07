@@ -197,6 +197,14 @@
                 android:backgroundTint="@color/blue"
                 android:text="My Ratings"
                 android:textColor="@color/black" />
+            <Button
+                android:id="@+id/btnViewInvoice"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/blue"
+                android:text="My Invoice"
+                android:textColor="@color/black" />
 
         </LinearLayout>
     </LinearLayout>
